@@ -1,17 +1,17 @@
 # Projeto-ShopFlux
 
-###*Integrantes:*
+### *Integrantes:*
 
 
-*Alessandra do Carmo Baccin
++Alessandra do Carmo Baccin
 
-*Cauã da Silva Ciconelli
++Cauã da Silva Ciconelli
 
-*Gabriel Sanchez Mainente
++Gabriel Sanchez Mainente
 
-*Jhonathan Lucas Ferreira de Barros
++Jhonathan Lucas Ferreira de Barros
 
-*Kauan Cavazani Brianez
++Kauan Cavazani Brianez
 
-*Luis Henrique Feitosa Nunes
++Luis Henrique Feitosa Nunes
 
