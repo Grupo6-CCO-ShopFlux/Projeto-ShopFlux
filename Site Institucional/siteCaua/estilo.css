@@ -1,0 +1,211 @@
+body{
+    font-family: monospace;
+    margin: 0;
+    background-color: rgb(24, 24, 24);
+}
+.container{
+    color: white;
+    display: flex;
+    background-color: #961c1c;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+    height: 11vh;
+}
+.navBar{
+    font-size: 19px;
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 0;
+    align-items: center;
+    width: 450px;
+    font-weight: 800;
+    margin: 0;
+    padding: 0;
+}
+.logo{
+    height: 10vh;
+}
+a{
+    text-decoration: none;
+    color: rgb(255, 66, 104);
+}
+.aqui{
+    color: rgb(66, 16, 26);
+}
+.umTicoDeCor{
+    background-color: rgb(36, 9, 15);
+    height: 11vh;
+    width: 70%;
+    margin: 0;
+    padding: 0;
+}
+/*
+Fim de Header
+
+Começo de Banner
+*/
+.banner{
+    margin: 0;
+    padding: 0;
+    background: url('imgs/shopping.jpg');
+    height: 700px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+}
+.pBanner{
+    margin-left: -50%;
+    margin-top: 15%;
+    width: 275px;
+}
+.textoBanner{
+    color: rgb(201, 2, 2);
+    font-size: 40px;
+    font-weight: 700;
+}
+.textoBanner span{
+    color: #b7b7b7;
+    font-weight: 900;
+    font-size: 47;
+}
+
+/*
+Fim Banner
+
+Começo Social 
+*/
+.social{
+    margin-top: 3vh;
+    background-color: #d9d9d9;
+}
+.boxes{
+    margin-top: 2vh;
+    margin-bottom: 4vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.boxRow{
+    margin: 10px;
+    display: flex;
+    justify-content: space-evenly;
+}
+.box{
+    margin-top: 10px;
+    width: 340px;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    color: #961c1c;
+    font-family: monospace;
+    font-weight: 400;
+    font-size: 18px;
+}
+.box p{
+    text-align: justify;
+}
+.box .titulo{
+    font-weight: 900;
+    text-align: center;
+}
+/*
+Fim Social
+
+Começo Footer
+*/
+.footer{
+    font-size: 13px;
+    display: flex;
+    justify-content: center;
+    color: #961c1c;
+    height: 10vh;
+    margin-top: 5vh;
+}
+
+/*
+Fim Footer
+
+Começo Login
+*/
+.login .loginCard{
+    margin-top: 65%;
+    background-color: #961c1c;
+    height: 330px;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    color: rgb(0, 0, 0);
+    align-items: center;
+    font-family: arial;
+}
+
+.loginCard h4{
+    font-size: 17px;
+}
+
+.loginCard{
+    border-radius: 10%;
+}
+
+.loginCard input{
+    border: rgb(83, 7, 7) solid 2px;
+    padding: 5px;
+}
+
+.loginCard button{
+    color: rgb(0, 0, 0);
+    background-color: rgb(83, 7, 7);
+    margin-top: 20px;
+    font-size: 20px;
+    width: 110px;
+    height: 40px;
+    font-family: monospace;
+    border: 0;
+    border-radius: 10%;
+    font-weight: 700;
+}
+/*
+Fim Login
+
+Começo Cadastro
+*/
+.cad .cadCard{
+    margin-top: 50%;
+    background-color: #961c1c;
+    height: 430px;
+    width: 270px;
+    display: flex;
+    flex-direction: column;
+    color: rgb(0, 0, 0);
+    align-items: center;
+    font-family: arial;
+}
+
+.cadCard h4{
+    font-size: 17px;
+}
+
+.cadCard{
+    border-radius: 10%;
+}
+
+.cadCard input{
+    border: rgb(83, 7, 7) solid 2px;
+    padding: 5px;
+}
+
+.cadCard button{
+    color: rgb(0, 0, 0);
+    background-color: rgb(83, 7, 7);
+    margin-top: 20px;
+    font-size: 20px;
+    width: 110px;
+    height: 40px;
+    font-family: monospace;
+    border: 0;
+    border-radius: 10%;
+    font-weight: 700;
+}
