@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="estilo.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <div class="header">
+        <div class="container">
+            <img src="imgs/shopfluxlogo.png" class="logo"></a>
+            <div class="umTicoDeCor"></div>
+            <ul class="navBar">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="simulador.html">Simulador</a></li>
+                <li class="aqui">Dashboard</li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="cadastro.html">Cadastro</a></li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="banner">
+        <div class="dashBoard">
+            <div class="dashCanvas">
+                <canvas id="myCanvasNum1"></canvas>
+                <canvas id="myCanvasNum2"></canvas>
+                <canvas id="myCanvasNum3"></canvas>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer">
+        <p>Dados da empresa e talvez número de telefone/zap zap e outras redes sociais &copy;</p>
+    </div>
+</body>
+
+</html>
+<script>
+    const labels1 = [
+        '10:00',
+        '11:00',
+        '12:00',
+        '13:00',
+        '14:00',
+        '15:00',
+        '16:00',
+        '17:00',
+        '18:00',
+        '19:00',
+        '20:00',
+        '21:00',
+        '22:00',
+    ];
+
+    const data1 = {
+        labels: labels1,
+        datasets: [{
+            label: 'Setor 1',
+            backgroundColor: 'rgb(102, 31, 31)',
+            borderColor: 'rgb(102, 31, 31)',
+            data: [40, 37, 59, 77, 75, 89, 95, 150, 142, 179, 211, 198],
+        },
+        {
+            label: 'Setor 2',
+            backgroundColor: 'rgb(135, 56, 0)',
+            borderColor: 'rgb(135, 56, 0)',
+            data: [22, 17, 15, 17, 26, 31, 33, 31, 46, 67, 79, 98],
+        }, {
+            label: 'Setor 3',
+            backgroundColor: 'rgb(135, 56, 0)',
+            borderColor: 'rgb(135, 56, 0)',
+            data: [37, 23, 33, 57, 66, 69, 115, 158, 159, 129, 77, 98],
+        }]
+    };
+
+    const config1 = {
+        type: 'line',
+        data: data1,
+        options: {}
+    };
+    const myCanvas1 = new Chart(
+        document.getElementById('myCanvasNum1'),
+        config
+    );
+
+
+</script>

@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="estilo.css">
+    <script src="func.js"></script>
 </head>
 
 <body>
@@ -28,10 +29,10 @@
         <div class="login">
             <div class="loginCard">
                 <h4>E-Mail</h4>
-                <input type="text" placeholder="exemplo@email.com">
+                <input type="text" placeholder="exemplo@email.com" id="login_inp">
                 <h4>Senha</h4>
-                <input type="password" placeholder="********">
-                <button>Entrar</button>
+                <input type="password" placeholder="********" id="pass_inp">
+                <button onclick="login()">Entrar</button>
                 <button>Cancelar</button>
             </div>
         </div>

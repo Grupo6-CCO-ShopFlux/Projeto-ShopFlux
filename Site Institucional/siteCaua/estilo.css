@@ -209,3 +209,25 @@ Começo Cadastro
     border-radius: 10%;
     font-weight: 700;
 }
+
+/*
+Fim Cadastro
+
+Começo Dashboard
+*/
+
+.dashBoard .dashCanvas{
+    margin-top: 5%;
+    background-color: #961c1c;
+    height: 560px;
+    width: 1200px;
+    display: flex;
+    flex-direction: column;
+    color: rgb(0, 0, 0);
+    align-items: center;
+    font-family: arial;
+    border-radius: 50px;
+}
+#myCanvasNum1{
+    width: 200px;
+}
