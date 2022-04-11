@@ -1,0 +1,123 @@
+body{
+    margin: 0;
+}
+
+.header{
+    background-color: #961C1C;
+    position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+}
+.header .container{
+    width: 80%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+
+}
+.container{
+    width: 80%;
+    margin: auto;
+}
+.logo{
+    
+    width:fit-content;
+    height: 10vh;
+}
+a{
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.menu{
+    list-style: none;
+    display: flex;
+   justify-content: right; 
+   justify-content: space-evenly;
+   width: 200px;
+   padding: 0px; 
+   align-items: center;
+}
+
+
+.banner{
+    background-image: url("Image/background.jpg");
+    background-attachment: fixed;
+    height: 500px;
+    display: flex;
+    background-size: cover;
+}
+.banner .container p {
+    font-weight: bold;
+    width: 10%;
+ 
+   }
+
+.banner .container{
+   justify-content: center;
+   font-size: 36px;
+}
+
+
+.sobre{
+    padding: 50px;
+    height: 250px;
+}
+
+
+
+
+.cliente {
+    background-color: rgb(128, 128, 240);
+    display: flex;
+    height: 450px;
+}
+.cliente .container .boxes .box img{
+    width: 170px;
+}
+.cliente .container .boxes{
+    display: flex;
+    gap: 10%;
+}
+.cliente .container .boxes h1{
+    display: flex;
+    flex-direction: column;
+}
+.espacamento{
+    height: 200px;
+}
+.box{
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   
+}
+.footer{
+    background-color: rgb(36, 35, 35);
+    height: 150px;
+    display: flex;
+    font-size: 17px;
+}
+.footer .container{
+    color: white;
+    justify-content: center;
+}
+
+.footerBox{
+    
+    display: flex;
+    justify-content: center;
+}
+
+.seguir{
+    list-style: none; 
+}
+
+.DireitosAutorais{
+    color: white;
+    display: flex;
+    align-items:flex-end;
+}
