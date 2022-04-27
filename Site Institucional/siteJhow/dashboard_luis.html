@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Login - ShopFlux</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <!-- Nosso cabeçalho -->
+    <div class="header">
+        <div class="container">
+            
+            <img class="titulo" src="imgs/logoTransparente.png" alt="">
+
+
+            <ul class="navBar">
+                <li>Home</li>
+                <li>Simulador</li>
+                <li>
+                     <a>
+                         Login
+                     </a> 
+                    </li>
+                <li>Cadastro</li>
+                <li id="aqui">Dashboards</li>
+                <li>Analytics</li>
+            </ul>
+        </div>
+
+    </div>
+
+        <img class="vetor1" src="imgs/vetorMenor.png" alt="">
+        <img class="vetor2" src="imgs/vetorMenor.png" alt="">
+    <br><br><br><br>
+              <div align="center">
+                <h1>Frequência no dia:</h1>
+                <select id="grafDia" onchange="mudarGraf()">
+                  <option value="27">27</option>
+                  <option value="26">26</option>
+                  <option value="25">25</option>
+                  <option value="24">24</option>
+                </select>
+              </div>
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                  <div>
+                    <canvas id="myChart" style="height: 55vh; width: 55vw;"></canvas>
+                    <canvas id="myChart3" style="height: 55vh; width: 55vw; display: none;"></canvas>
+                  </div>
+                  <br><br><br>
+                  <h1>Frequência no último mês (%):</h1>
+                    <select name="" id="">
+                      <option value="">Abril</option>
+                      <option value="">Março</option>
+                      <option value="">Fevereiro</option>
+                      <option value="">Janeiro</option>
+                    </select>
+                  <br><br>
+                  <div>
+                    <canvas id="myChart2" style="height: 35vh; width: 35vw;"></canvas>
+                  </div>
+              </div>
+</body>
+</html>
+<script>
+
+    const labels = [
+     '11:00',
+     '12:00',
+     '13:00',
+     '14:00',
+     '15:00',
+     '16:00',
+     '17:00',
+     '18:00'
+   ];
+ 
+   const data = {
+     labels: labels,
+     datasets: [{
+       label: 'Setor 1',
+       backgroundColor: 'rgb(0,255,0)',
+       borderColor: 'rgb(0,255,0)',
+       data: [61, 02, 54, 75, 24, 34, 64, 74],
+     }, {
+       label: 'Setor 2',
+       backgroundColor: 'rgb(0,0,255)',
+       borderColor: 'rgb(0,0,255)',
+       data: [31, 16, 75, 95, 63, 61, 46, 51],
+     } , {
+       label: 'Setor 3',
+       backgroundColor: 'rgb(255,255,0)',
+       borderColor: 'rgb(255,255,0)',
+       data: [23, 56, 85, 30, 46, 03, 37, 58],
+     } , {
+       label: 'Setor 4',
+       backgroundColor: 'rgb(255,0,0)',
+       borderColor: 'rgb(255,0,0)',
+       data: [45, 84, 54, 59, 64, 02, 29, 67],
+     }
+    ]
+   };
+
+   const data2 = {
+  labels: [
+    'Setor 1',
+    'Setor 2',
+    'Setor 3',
+    'Setor 4'
+  ],
+  datasets: [{
+    label: 'My First Dataset',
+    data: [34, 56, 7, 3],
+    backgroundColor: [
+      'rgb(255,0,0)',
+      'rgb(255,255,0)',
+      'rgb(0,0,255)',
+      'rgb(0,255,0)'
+    ],
+    hoverOffset: 4
+  }]
+};
+
+const data3 = {
+     labels: labels,
+     datasets: [{
+       label: 'Setor 1',
+       backgroundColor: 'rgb(0,255,255)',
+       borderColor: 'rgb(0,255,255)',
+       data: [61, 02, 54, 75, 24, 34, 64, 74],
+     }, {
+       label: 'Setor 2',
+       backgroundColor: 'rgb(0,0,255)',
+       borderColor: 'rgb(0,0,255)',
+       data: [31, 16, 75, 95, 63, 61, 46, 51],
+     } , {
+       label: 'Setor 3',
+       backgroundColor: 'rgb(255,255,0)',
+       borderColor: 'rgb(255,255,0)',
+       data: [23, 56, 85, 30, 46, 03, 37, 58],
+     } , {
+       label: 'Setor 4',
+       backgroundColor: 'rgb(255,0,0)',
+       borderColor: 'rgb(255,0,0)',
+       data: [45, 84, 54, 59, 64, 02, 29, 67],
+     }
+    ]
+   };
+
+   const config = {
+     type: 'line',
+     data: data,
+     options: {}
+   };
+
+   const config2 = {
+  type: 'doughnut',
+  data: data2,
+};
+
+const config3 = {
+     type: 'line',
+     data: data3,
+     options: {}
+   };
+ 
+   const myChart = new Chart(
+     document.getElementById('myChart'),
+     config
+   );
+
+   const myChart2 = new Chart(
+     document.getElementById('myChart2'),
+     config2
+   );
+
+   const myChart3 = new Chart(
+     document.getElementById('myChart3'),
+     config3
+   );
+
+  </script>
