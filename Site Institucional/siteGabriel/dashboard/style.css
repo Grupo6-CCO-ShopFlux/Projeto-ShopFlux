@@ -1,0 +1,41 @@
+canvas {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+body{
+    margin: 0;
+}
+.barraLateral{
+    background-color: brown; 
+    height: 700px;
+    float: left;
+    width: 250px;
+}
+.user{
+    height: 150px;
+    width: 150px;
+    border-radius: 100%;
+    padding: 30px;
+    display: flex;
+}
+.boxes{
+    list-style: none;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 100px;
+    font-size: larger;
+}
+.box{
+    text-decoration: none;color: white;
+}
+.container{
+    padding-left: 500px;
+    padding-top: 150px;
+}
+.cards{
+    display: flex;
+}
+.social{
+    width:40%;
+}
