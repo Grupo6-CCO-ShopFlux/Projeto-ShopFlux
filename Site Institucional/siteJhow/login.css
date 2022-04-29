@@ -112,19 +112,19 @@ h1{
 }
 
 .perigo-frio {
-  background-color: #5c6bc0;
-}
-
-.perigo-quente {
   background-color: #ff7043;
 }
 
+.perigo-quente {
+  background-color: #5c6bc0;
+}
+
 .alerta-frio {
-  background-color: #42a5f5;
+  background-color: #ffee58;
 }
 
 .alerta-quente {
-  background-color: #ffee58;
+  background-color: #42a5f5;
 }
 
 .ideal {
