@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <link rel="shortcut icon" href="../assets/icon/favicon.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AcquaTec | Avisos</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="./dashboards.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- <body onload="validarSessao()"> -->
+
+    <div class="janela">
+
+
+        <div class="header-left">
+
+            <h1>SHOPFLUX</h1>
+
+            <div class="hello">
+                <h3>Olá, usuário!</h3>
+            </div>
+
+            <div class="btn-nav-white">
+                <a href="cards.html">
+                    <h3>Visão Geral</h3>
+                </a>
+            </div>
+
+            <div class="btn-nav-white">
+                <a href="./dashboard.html">
+                    <h3>Mapa</h3>
+                </a>
+            </div>
+
+            <div class="btn-nav">
+                <h3>Gráficos</h3>
+            </div>
+
+            <div class="btn-logout" onclick="limparSessao()">
+                <h3>Sair</h3>
+            </div>
+
+        </div>
+
+            <div class="dash_grafico">
+                <div class="titulo"><h1>SETORES</h1></div>
+                <div class="graph" style="display: flex;">
+                    <canvas id="setor1_grafico"></canvas>
+                    <canvas id="setor2_grafico"></canvas>
+                </div>
+            </div>
+
+        </div>
+
+</body>
+</html>
+<script>
+
+const labels_hora = [
+    '10h',
+    '11h',
+    '12h',
+    '13h',
+    '14h',
+    '15h',
+    '16h',
+    '17h',
+    '18h',
+    '19h',
+    '20h',
+    '21h',
+    '22h'
+];
+
+const data_hora = {
+    labels: labels_hora,
+    datasets: [{
+        label: 'Setor 1',
+        backgroundColor: 'rgb(255, 99, 132)',
+        borderColor: 'rgb(255, 99, 132)',
+        data: [1000, 12000, 13000, 17000, 21000, 15000, 12000, 13000, 18000, 15000, 10000, 12000, 8000],
+    },
+    {
+    label: 'Setor 2',
+    backgroundColor: '#e6005a',
+    borderColor: '#e6005a',
+    data: [1000, 15000, 20000, 23000, 24000, 22000, 22000, 20000, 27000, 26000, 23000, 20000, 19000],
+    },
+    {
+    label: 'Setor 3',
+    backgroundColor: 'white',
+    borderColor: 'white',
+    data: [2700, 25000, 29000, 28000, 30000, 29000, 31000, 32000, 35000, 33000, 30000, 27000, 25000],
+    },
+    {
+    label: 'Setor 4',
+    backgroundColor: '#AD4748',
+    borderColor: '#AD4748',
+    data: [500, 10000, 11000, 8000, 7000, 7500, 8000, 9000, 10000, 8000, 7000, 5000, 3500],
+    }]
+};
+
+const config_hora = {
+    type: 'line',
+    data: data_hora,
+    options: {}
+};
+
+const myChart_hora = new Chart(
+    document.getElementById('setor1_grafico'),
+    config_hora
+);
+
+const labels_dias = [
+    'Domingo',
+    'Segunda',
+    'Terça',
+    'Quarta',
+    'Quinta',
+    'Sexta',
+    'Sábado'
+];
+
+const data_dias = {
+    labels: labels_dias,
+    datasets: [{
+        label: 'Setor 1',
+        backgroundColor: 'rgb(255, 99, 132)',
+        borderColor: 'rgb(255, 99, 132)',
+        data: [1000, 12000, 13000, 17000, 21000, 15000, 12000, 13000, 18000, 15000, 10000, 12000, 8000],
+    },
+    {
+    label: 'Setor 2',
+    backgroundColor: '#e6005a',
+    borderColor: '#e6005a',
+    data: [1000, 15000, 20000, 23000, 24000, 22000, 22000, 20000, 27000, 26000, 23000, 20000, 19000],
+    },
+    {
+    label: 'Setor 3',
+    backgroundColor: 'white',
+    borderColor: 'white',
+    data: [2700, 25000, 29000, 28000, 30000, 29000, 31000, 32000, 35000, 33000, 30000, 27000, 25000],
+    },
+    {
+    label: 'Setor 4',
+    backgroundColor: '#AD4748',
+    borderColor: '#AD4748',
+    data: [500, 10000, 11000, 8000, 7000, 7500, 8000, 9000, 10000, 8000, 7000, 5000, 3500],
+    }]
+};
+
+const config_dias = {
+    type: 'bar',
+    data: data_dias,
+    options: {}
+};
+
+const myChart_dias = new Chart(
+    document.getElementById('setor2_grafico'),
+    config_dias
+);
+
+</script>
