@@ -2,14 +2,14 @@
 <html lang="pt-br">
 
 <head>
-    <link rel="shortcut icon" href="../assets/icon/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="img/logoTransparente.png" type="image/x-icon">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AcquaTec | Avisos</title>
+    <title>Shopflux | Gráficos</title>
 
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="./dashboards.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="dashboards.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -19,7 +19,6 @@
 </head>
 
 <body>
-    <!-- <body onload="validarSessao()"> -->
 
     <div class="janela">
 
@@ -56,9 +55,13 @@
 
             <div class="dash_grafico">
                 <div class="titulo"><h1>SETORES</h1></div>
-                <div class="graph" style="display: flex;">
+                <div class="graph">
                     <canvas id="setor1_grafico"></canvas>
                     <canvas id="setor2_grafico"></canvas>
+                </div>
+                <div class="graph2">
+                    <canvas id="setor3_grafico"></canvas>
+                    <canvas id="setor4_grafico"></canvas>
                 </div>
             </div>
 
@@ -90,32 +93,41 @@ const data_hora = {
         label: 'Setor 1',
         backgroundColor: 'rgb(255, 99, 132)',
         borderColor: 'rgb(255, 99, 132)',
-        data: [1000, 12000, 13000, 17000, 21000, 15000, 12000, 13000, 18000, 15000, 10000, 12000, 8000],
+        data: [0, 12000, 13000, 17000, 21000, 15000, 12000, 13000, 18000, 15000, 10000, 12000, 8000],
     },
     {
     label: 'Setor 2',
     backgroundColor: '#e6005a',
     borderColor: '#e6005a',
-    data: [1000, 15000, 20000, 23000, 24000, 22000, 22000, 20000, 27000, 26000, 23000, 20000, 19000],
+    data: [0, 15000, 20000, 23000, 24000, 22000, 22000, 20000, 27000, 26000, 23000, 20000, 19000],
     },
     {
     label: 'Setor 3',
     backgroundColor: 'white',
     borderColor: 'white',
-    data: [2700, 25000, 29000, 28000, 30000, 29000, 31000, 32000, 35000, 33000, 30000, 27000, 25000],
+    data: [0, 25000, 29000, 28000, 30000, 29000, 31000, 32000, 35000, 33000, 30000, 27000, 25000],
     },
     {
     label: 'Setor 4',
     backgroundColor: '#AD4748',
     borderColor: '#AD4748',
-    data: [500, 10000, 11000, 8000, 7000, 7500, 8000, 9000, 10000, 8000, 7000, 5000, 3500],
+    data: [0, 10000, 11000, 8000, 7000, 7500, 8000, 9000, 10000, 8000, 7000, 5000, 3500],
     }]
 };
 
 const config_hora = {
     type: 'line',
     data: data_hora,
-    options: {}
+    options: {
+        plugins: {
+            title: {
+                display: true,
+                position: 'top',
+                text: 'Fluxo Diário',
+                fontSize: 14
+            }
+        }
+    }
 };
 
 const myChart_hora = new Chart(
@@ -135,6 +147,69 @@ const labels_dias = [
 
 const data_dias = {
     labels: labels_dias,
+    datasets: [{
+        label: 'Setor 1',
+        backgroundColor: 'rgb(255, 99, 132)',
+        borderColor: 'rgb(255, 99, 132)',
+        data: [167000, 133000, 138000, 140000, 148000, 155000, 162000],
+    },
+    {
+    label: 'Setor 2',
+    backgroundColor: '#e6005a',
+    borderColor: '#e6005a',
+    data: [262000, 239000, 240000, 247000, 250000, 258000, 260000],
+    },
+    {
+    label: 'Setor 3',
+    backgroundColor: 'white',
+    borderColor: 'white',
+    data: [326000, 295000, 298000, 305000, 314000, 320000, 324000],
+    },
+    {
+    label: 'Setor 4',
+    backgroundColor: '#AD4748',
+    borderColor: '#AD4748',
+    data: [94500, 80000, 83000, 88000, 89000, 91000, 93000],
+    }]
+};
+
+const config_dias = {
+    type: 'bar',
+    data: data_dias,
+    options: {
+        plugins: {
+            title: {
+                display: true,
+                position: 'top',
+                text: 'Fluxo Semanal',
+                fontSize: 14
+            }
+        }
+    }
+};
+
+const myChart_dias = new Chart(
+    document.getElementById('setor2_grafico'),
+    config_dias
+);
+
+const labels_mes = [
+    'Janeiro',
+    'Fevereiro',
+    'Março',
+    'Abril',
+    'Maio',
+    'Junho',
+    'Julho',
+    'Agosto',
+    'Setembro',
+    'Outubro',
+    'Novembro',
+    'Dezembro'
+];
+
+const data_mes = {
+    labels: labels_mes,
     datasets: [{
         label: 'Setor 1',
         backgroundColor: 'rgb(255, 99, 132)',
@@ -161,15 +236,81 @@ const data_dias = {
     }]
 };
 
-const config_dias = {
+const config_mes = {
     type: 'bar',
-    data: data_dias,
-    options: {}
+    data: data_mes,
+    options: {
+        plugins: {
+            title: {
+                display: true,
+                position: 'top',
+                text: 'Fluxo Mensal',
+                fontSize: 14
+            }
+        }
+    }
 };
 
-const myChart_dias = new Chart(
-    document.getElementById('setor2_grafico'),
-    config_dias
+const myChart_mes = new Chart(
+    document.getElementById('setor3_grafico'),
+    config_mes
+);
+
+const labels_ano = [
+    '2017',
+    '2018',
+    '2019',
+    '2020',
+    '2021',
+    '2022'
+];
+
+const data_ano = {
+    labels: labels_ano,
+    datasets: [{
+        label: 'Setor 1',
+        backgroundColor: 'rgb(255, 99, 132)',
+        borderColor: 'rgb(255, 99, 132)',
+        data: [167000, 133000, 138000, 140000, 148000, 155000, 162000],
+    },
+    {
+    label: 'Setor 2',
+    backgroundColor: '#e6005a',
+    borderColor: '#e6005a',
+    data: [262000, 239000, 240000, 247000, 250000, 258000, 260000],
+    },
+    {
+    label: 'Setor 3',
+    backgroundColor: 'white',
+    borderColor: 'white',
+    data: [326000, 295000, 298000, 305000, 314000, 320000, 324000],
+    },
+    {
+    label: 'Setor 4',
+    backgroundColor: '#AD4748',
+    borderColor: '#AD4748',
+    data: [94500, 80000, 83000, 88000, 89000, 91000, 93000],
+    }]
+};
+
+const config_ano = {
+    type: 'bar',
+    data: data_ano,
+    options: {
+        plugins: {
+            title: {
+                display: true,
+                position: 'top',
+                text: 'Fluxo Anual',
+                fontSize: 14
+            }
+        }
+    }
+};
+
+const myChart_ano = new Chart(
+    document.getElementById('setor4_grafico'),
+    config_ano
 );
 
 </script>
