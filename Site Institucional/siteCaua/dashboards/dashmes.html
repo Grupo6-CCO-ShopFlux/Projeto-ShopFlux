@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="dash.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="topo">
+                <img class="titulo" src="imgs/logoTransparente.png" alt="">
+                <img src="https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png"
+                    class="profile">
+                Undefined
+            </div>
+            <div class="sideNav">
+                <button class="btnSidebar">Gráficos</button>
+                <button class="btnSidebar">Mural de avisos</button>
+                <button class="btnSidebar">Trocar Usuário</button>
+                <button class="btnSidebar">Sair</button>
+            </div>
+        </div>
+        <div class="outSide">
+            <div class="header">
+                <div class="container">
+                    <ul class="navBar">
+                        <li><a href="dashdia.html">Sensor diário</a></li>
+                        <li class="aqui">Sensor mensal</a></li>
+                        <li><a href="dashano.html">Sensor anual</a></li>
+                        <li><a href="dashcalor.html">Mapa de calor</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="dash">
+                <h1>Disparos do mês:</h1>
+                <div class="canvases">
+                    <canvas id="myChart""></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    </body>
+    </html>
+    <script>
+
+        const labels = [
+            'Setor 1',
+            'Setor 2',
+            'Setor 3',
+        ];
+
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: 'Andar 1',
+                backgroundColor: 'rgb(137,15,23)',
+                borderColor: 'rgb(137,15,23)',
+                data: [331000, 310900, 300700]
+            }, {
+                label: 'Andar 2',
+                backgroundColor: 'rgb(255,0,36)',
+                borderColor: 'rgb(255,0,36)',
+                data: [278000, 267009, 231877]
+            }, {
+                label: 'Andar 3',
+                backgroundColor: 'rgb(255,55,12)',
+                borderColor: 'rgb(255,55,12)',
+                data: [309800, 278900, 240090]
+            }
+            ]
+        };
+
+        const config = {
+            type: 'bar',
+            data: data,
+            options: {}
+        };
+
+
+
+        const myChart = new Chart(
+            document.getElementById('myChart'),
+            config
+        );
+        myChart.canvas.width = 500
+        myChart.canvas.height = 100
+    </script>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="dash.css">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="topo">
+                <img class="titulo" src="imgs/logoTransparente.png" alt="">
+                <img src="https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png" class="profile">
+                Undefined
+            </div>
+            <div class="sideNav">
+                <button class="btnSidebar">Gráficos</button>
+                <button class="btnSidebar">Mural de avisos</button>
+                <button class="btnSidebar">Trocar Usuário</button>
+                <button class="btnSidebar">Sair</button>
+            </div>
+        </div>
+        <div class="outSide">
+            <div class="header">
+                <div class="container">
+                    <ul class="navBar">
+                        <li class="aqui">Sensor diário</li>
+                        <li><a href="dashmes.html">Sensor mensal</a></li>
+                        <li><a href="dashano.html">Sensor anual</a></li>
+                        <li><a href="dashcalor.html">Mapa de calor</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="dash">
+                <h1>Disparos do dia:</h1>
+                <div class="canvases">
+                    <canvas id="myChart""></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    </body>
+    </html>
+    <script>
+        
+        const labels = [
+            '10:00',
+     '11:00',
+     '12:00',
+     '13:00',
+     '14:00',
+     '15:00',
+     '16:00',
+     '17:00',
+     '18:00',
+     '19:00',
+     '20:00',
+     '21:00',
+     '22:00',
+   ];
+ 
+   const data = {
+     labels: labels,
+     datasets: [{
+       label: 'Setor 1',
+       backgroundColor: 'rgb(137,15,23)',
+       borderColor: 'rgb(137,15,23)',
+       data: [2210, 2465, 2876, 2764, 2710, 3189, 3657, 4122, 4677, 5022,
+    6231, 5988, 5098],
+     }, {
+       label: 'Setor 2',
+       backgroundColor: 'rgb(255,0,36)',
+       borderColor: 'rgb(255,0,36)',
+       data: [1321, 1109, 1092, 1201, 1344, 1400, 1603, 1504, 1523, 1754,
+    2011, 1833, 1700],
+     } , {
+       label: 'Setor 3',
+       backgroundColor: 'rgb(255,55,12)',
+       borderColor: 'rgb(255,55,12)',
+       data: [1930, 1765, 1567, 1698, 1882, 1884, 2665, 3142, 2799, 3211,
+    3310, 2998, 3001],
+     }
+    ]
+   };
+
+   const config = {
+     type: 'line',
+     data: data,
+     options: {}
+   };
+
+
+ 
+   const myChart = new Chart(
+     document.getElementById('myChart'),
+     config
+   );
+
+  </script>
