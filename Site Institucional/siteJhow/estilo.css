@@ -2,6 +2,7 @@
 body {
     margin: 0;
     background: #AE4848;
+    color: white;
     font-family: monospace;
 }
 
@@ -43,6 +44,16 @@ ul li a{
     align-items: center;
 }
 
+.navBar a:hover {
+    padding-bottom: 4px;
+    border-bottom: 3px solid white;
+    transition: 0.8;
+}
+
+a{
+    text-decoration: none;
+}
+
 /* Fim do cabeçalho */
 
 /* Começo do Banner */
@@ -68,20 +79,22 @@ ul li a{
 
 .btBanner {
     border-radius: 25px;
+    border: solid 1px black;
     width: 23%;
     height: 25%;
     background-color: #FB6D6D;
     color: white;
-
+    box-shadow: 1px 5px 10px rgba(2, 2, 2, 0.418);
 }
 .btBanner2{
+    border: solid 1px black;
     margin-left: 20px;
     border-radius: 25px;
     width: 20%;
     height: 25%;
     background-color: transparent;
-    color: white;
-
+    color: rgba(255, 255, 255, 0.781);
+    box-shadow: 1px 5px 10px rgba(2, 2, 2, 0.418);
 }
 
 .vetor1 {
@@ -108,8 +121,8 @@ ul li a{
 
 /* Começo d Social */
 .social  {
-    background-image: linear-gradient(100deg,#813434,#EA8888);
-    /* background-color: #813434; */
+    /* background-image: linear-gradient(100deg,#813434,#EA8888); */
+    background-color: #813434;
     height: 600px;
     display: flex;
 }
@@ -123,45 +136,24 @@ ul li a{
 }
 
 .box {
-    margin-top: 50px;
+    margin: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-/* Final do Social */
+/* Final do Social */  
 
-/* Começo do Footer */
-
+/* inicio do rodapé */
 .footer {
-    background-color: #AE4848;
+    background-color: #251515;
     height: 150px;
     color: #fff;
     display: flex;
     font-size: 15px;
 }
 
-.footer .container {
-    justify-content: center;
-}
-
-a {
-    color: #e3b062;
-    text-decoration: none;
-}
-
-.banner .container .card {
-    background-color: beige;
-    height: 400px;
-    width: 400px;
-    display: flex;
-    flex-direction: column;
-    color: palevioletred;
-    align-items: center;
-    border-radius: 4px;
-}
-
-.card h1 {
+/* .card h1 {
     font-size: 30px;
 }
 
@@ -170,7 +162,7 @@ a {
 }
 
 .card input {
-    border: palevioletred solid 2px;
+    border: palevioletred solid 200px;
     padding: 10px;
     text-align: center;
 }
@@ -185,4 +177,64 @@ a {
     border-radius: 4px; 
     color: #fff;
     cursor: pointer;
+} */
+
+#myFooter {
+    background-color: rgb(160, 56, 56);
+    color: white;
+    padding-top: 30px;
+    width: 100%;
 }
+
+#myFooter .footer-copyright {
+    padding: 3px;
+    text-align: center;
+}
+
+#myFooter .row {
+    display: flex;
+}
+
+.coluna {
+    margin-right: 50px;
+    margin-left: 50px;
+}
+
+.colunaSocial {
+    margin-left: 90px;
+}
+
+
+#myFooter ul {
+    list-style-type: none;
+    padding-left: 0;
+    line-height: 1.7;
+}
+
+#myFooter h5 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 30px;
+}
+
+#myFooter a {
+    color: #d2d1d1;
+}
+
+#myFooter a:hover, #myFooter a:focus {
+    color: white;
+}
+
+#myFooter .social-networks {
+    text-align: center;
+    padding-top: 50px;
+    padding-bottom: 16px;
+}
+
+#myFooter .social-networks img {
+    width: 30px;
+    padding: 10px;
+}
+
+
+/* fim do rodapé */

@@ -1,193 +1,264 @@
 /* Começo do cabeçalho */
 body {
-    margin: 0;
-    background: #D2C1C1;
-    background-repeat: no-repeat;
-    width: 100%;
-    font-family: monospace;
+  margin: 0;
+  background: #D2C1C1;
+  color: white;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-family: monospace;
 }
 
 .bgLogin{
-    height: 500px;
-    background-position: center;
-    background-repeat: no-repeat;
-    /* background-size: cover; */
-    position: relative;
+  /* height: 500px; */
+  background-position: center;
+  background-repeat: no-repeat;
+  /* background-size: cover; */
+  position: relative;
+}
 
+.bgLogin .contlogin {
+  margin-top: 90px;
+  display: flex;
+  flex-direction: column;
+  color: rgb(255, 255, 255);
+  align-items: center;
+}
+
+.check{
+  display: flex;
+  margin-left: 548px;
+}
+.txt{
+  margin-right: 220px;
+}
+
+.contlogin input {
+  /* border-radius: 10px; */
+  background: #F0E8EA;
+  width: 260px;
+  height: 35px;
+  text-align: center;
+  border-radius: 5px;
+  border-bottom: solid 1px #FF0066;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+}
+
+.btLogin {
+  margin-left: 548px;
+  border-radius: 5px;
+  border: solid 1px black;
+  width: 20%;
+  height: 35px;
+  background-color: #FB6D6D;
+  color: white;
+  border: none;
+  box-shadow: 1px 5px 10px rgba(2, 2, 2, 0.418);
 }
 
 .container {
-    width: 80%;
-    margin: auto;
-    display: flex;
+  width: 80%;
+  margin: auto;
+  display: flex;
 }
 
 
 .header{
-    background: #AE4848;
+  background: #AE4848;
 }
 
 .header .container{
-    justify-content: space-between;
-    
+  justify-content: space-between;
+  
 }
 
 .header ul #aqui {
-    font-weight: 800;
+  font-weight: 800;
 }
 
 ul {
-    color: white;
+  color: white;
 }
 
 ul li a{
-    color: white;
+  color: white;
 }
 
 .titulo {
-    /* width: 90px; */
-    height: 90px;
+  /* width: 90px; */
+  height: 90px;
 }
 
 .navBar {
-    width: 380px;
-    padding: 0;
-    list-style: none;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
+  width: 300px;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 /* Fim do cabeçalho */
 
 .vetor1 {
-    /* width: 250px; */
-    /* justify-content: right; */
-    position: absolute;
-    right: 0;
-    /* top: 0; */
-    bottom: 0;
-    width: 200px;
-    /* height: 400px; */
+  /* width: 250px; */
+  /* justify-content: right; */
+  position: absolute;
+  right: 0;
+  /* top: 0; */
+  bottom: 0;
+  width: 200px;
+  /* height: 400px; */
 }
 .vetor2 {
-    position: absolute;
-    right: 0;
-    /* top: 0; */
-    bottom: 0;
-    width: 300px;
-    /* width: 250px; */
-    /* justify-content: right; */
+  position: absolute;
+  right: 0;
+  /* top: 0; */
+  bottom: 0;
+  width: 300px;
+  /* width: 250px; */
+  /* justify-content: right; */
 }
 
-h1{
-    color: #AE4848;
-}
 
-.card h1{
-    color:white;
-}
-
-.dash {
-  width: 75%;
-  top: 0;
-  left: 25%;
-  background-color: #A52A2A;
-
-  /* width: 75%;
-    display: flex;
-    background-color: #161618;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;*/
-  height: 100vh;
-}
-
-.regua {
+/* inicio do rodapé */
+.footer {
+  background-color: #AE4848;
+  height: 150px;
+  color: #fff;
   display: flex;
-  flex-wrap: wrap;
+  font-size: 15px;
+}
+
+.footer .container {
   justify-content: center;
+} 
+
+
+
+.banner .container .card {
+  background-color: beige;
+  height: 400px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  color: palevioletred;
+  align-items: center;
+  border-radius: 4px;
+}
+
+.card h1 {
+  font-size: 30px;
+}
+
+.card h4 {
+  font-size: 16px;
+}
+
+.card input {
+  border: palevioletred solid 2px;
+  padding: 10px;
+  text-align: center;
+}
+
+.card button {
+  width: 100px;
+  height: 50px;
+  background-color: palevioletred;
+  margin-top: 25px;
+  font: 700 20px monospace;
+  border: 0;
+  border-radius: 4px; 
+  color: #fff;
+  cursor: pointer;
+}
+
+#myFooter {
+  background-color: rgb(150,28,28);
+  color: white;
+  padding-top: 30px;
   width: 100%;
+}
+
+#myFooter .footer-copyright {
+  background-color: rgb(88, 0, 0);
+  padding-top: 3px;
+  padding-bottom: 3px;
+  text-align: center;
+}
+
+#myFooter .row {
+  margin-bottom: 60px;
+  display: flex;
+}
+
+.colunaLogo img{
+  width: 200px;
+  padding-top: 22px;
+  padding-right: 15px;
+}
+
+.coluna {
+  margin-right: 50px;
+  margin-left: 50px;
+}
+
+.colunaSocial {
+  margin-left: 90px;
+}
+
+#myFooter .footer-copyright p {
+  margin: 10px;
+  color: #ccc;
+}
+
+#myFooter ul {
+  list-style-type: none;
+  padding-left: 0;
+  line-height: 1.7;
+}
+
+#myFooter h5 {
+  font-size: 18px;
+  color: white;
+  font-weight: bold;
   margin-top: 30px;
 }
 
-.perigo-frio {
-  background-color: #ff7043;
+#myFooter a {
+  color: #d2d1d1;
 }
 
-.perigo-quente {
-  background-color: #5c6bc0;
-}
-
-.alerta-frio {
-  background-color: #ffee58;
-}
-
-.alerta-quente {
-  background-color: #42a5f5;
-}
-
-.ideal {
-  background-color: #9ccc65;
-}
-
-.item-regua {
-  padding: 5px;
-  width: 15%;
-  margin: 5px;
-  text-align: center;
-  padding-top: 15px;
-}
-
-.cards {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  height: 450px;
-  width: 100%;
-  align-items: center;
+#myFooter a:hover, #myFooter a:focus {
   color: white;
 }
 
-.card {
-  margin: 2%;
-  width: 40%;
-  flex-wrap: wrap;
-  display: flex;
+#myFooter .social-networks {
   text-align: center;
-  height: 180px;
-  justify-content: right;
-  background-color: #FA8072;
-  font-size: 20px;
+  padding-top: 50px;
+  padding-bottom: 16px;
 }
 
-.card p {
-  margin: 0;
-  font-size: 50px;
-  font-weight: lighter;
-  text-align: left;
+#myFooter .social-networks img {
+  width: 30px;
+  padding: 10px;
 }
 
-.cards h1 {
-  font-size: 22px;
-  width: 100%;
-  border-bottom: solid white 1px;
-  text-align: left;
-  font-weight: lighter;
-  margin: 20px;
+#myFooter .btn {
+  color: rgb(88, 0, 0);
+  background-color: white;
+  border-radius: 20px;
+  border: none;
+  width: 150px;
+  display: block;
+  margin: 0 auto;
+  margin-top: 10px;
+  line-height: 25px;
+  cursor: pointer;
 }
 
-.temperatura,
-.umidade {
-  margin: 5px;
-  margin-left: 20px;
-  width: 75%;
-}
-
-.cor-alerta {
-  width: 13%;
-  height: 30%;
-  border-radius: 50px;
-  margin-top: 6%;
-  /* background-color: #c7c7c7; */
-}
+#myFooter .btn:hover {
+  background-color: #d2d1d1;
+} 
+/* fim do rodapé */
