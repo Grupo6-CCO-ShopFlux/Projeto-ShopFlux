@@ -8,6 +8,24 @@ body {
   font-family: monospace;
 }
 
+.navBar {
+  width: 300px;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.navBar a:hover {
+  padding-bottom: 4px;
+  border-bottom: 3px solid white;
+  transition: 0.8;
+}
+a {
+  text-decoration: none;
+}
+
 .bgLogin{
   /* height: 500px; */
   background-position: center;
@@ -123,21 +141,19 @@ ul li a{
 
 
 /* inicio do rodapé */
-.footer {
+/* .footer {
   background-color: #AE4848;
-  height: 150px;
+  height: 10px;
   color: #fff;
   display: flex;
   font-size: 15px;
-}
+} */
 
-.footer .container {
+/* .footer .container {
   justify-content: center;
-} 
+}  */
 
-
-
-.banner .container .card {
+/* .banner .container .card {
   background-color: beige;
   height: 400px;
   width: 400px;
@@ -146,9 +162,9 @@ ul li a{
   color: palevioletred;
   align-items: center;
   border-radius: 4px;
-}
+} */
 
-.card h1 {
+/* .card h1 {
   font-size: 30px;
 }
 
@@ -260,5 +276,5 @@ ul li a{
 
 #myFooter .btn:hover {
   background-color: #d2d1d1;
-} 
+}  */
 /* fim do rodapé */
