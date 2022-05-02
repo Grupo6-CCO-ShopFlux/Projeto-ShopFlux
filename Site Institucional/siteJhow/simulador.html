@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="simulador.css">
+    <title>Simulador financeiro</title>
+</head>
+
+    <body>
+
+        <div class="header">
+            <div class="container">
+                
+                <img class="titulo" src="imgs/logoTransparente.png" alt="">
+    
+    
+                <ul class="navBar">
+                    <li class="atual"><a href="index.html">Home</a></li>
+                    <li><a href="">Simulador</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="cadastro.html">Cadastro</a></li>
+                </ul>
+            </div>
+    
+        </div>
+
+        <img class="vetor1" src="imgs/vetorMenor.png" alt="">
+        <img class="vetor2" src="imgs/vetorMenor.png" alt="">
+
+        <h1>Calcule os lucros do seu shopping</h1>
+
+        <p>Por que você deveria usar a nossa solução em seu mercado?
+            Para começar, vou explicar um pouco da ideia do projeto. Nossa ideia é coletar informações do fluxo dos corredores do mercado com a ajuda de sensores de proximidade. Desse modo, é possível avaliar por quanto tempo o cliente fica em cada corredor, quais são os corredores mais movimentados e analisar os impactos de mudanças. Isso faz com que seja possível remanejar os produtos de acordo com esses dados para obter mais lucros, conseguindo sempre adquirir informações de maneira rápida e fácil.
+            
+            Com a calculadora abaixo você saberá os seguintes itens do seu mercado: lucro bruto, lucro líquido, margem bruta e margem líquida. Assim, é possível fazer um comparativo de qual é o seu lucro e com o lucro que você obterá organizando as gôndolas, uma vez que é possível aumentar as vendas em até 20% com a estruturação dos produtos.</p>
+
+        Digite o nome do setor: <br>
+        <input type="text" id="inpt_nomeSetor" placeholder="Ex: A, B, C"> <br><br>
+
+        Qual a quantidade de lojas nesse setor? <br>
+        <input type="text" id="inpt_qtdLojas" placeholder="Ex: 7"> <br><br>
+
+        Qual o preço médio dos aluguéis? <br>
+        <input type="text" id="inpt_aluguel" placeholder="Ex: 3000"><br><br>
+
+        Qual o fluxo desse setor? <br>
+        <select id="lista_fluxo">
+            <option value="0">-- Selecione --</option>
+            <option value="1">Baixo</option>
+            <option value="2">Normal</option>
+            <option value="3">Alto</option>
+        </select> <br><br>
+
+        <button onclick="calcular()">Calcular</button> <br><br>
+
+        <div id="resultado"></div>
+
+        
+
+    </body>
+
+</html>
+<!-- <script>
+
+    function calcular() {
+
+        var nomeSetor = inpt_nomeSetor.value;
+        var qtdLojas = inpt_qtdLojas.value;
+        var aluguel = Number(inpt_aluguel.value);
+        var ganhosSetor = aluguel * qtdLojas;
+        var prejuizo = ganhosSetor * 0.2;
+        var lucroNormal = aluguel + (2500 - aluguel);
+        var lucroAlto = aluguel + (4500 - aluguel);
+
+        if(lista_fluxo.value == 0) {
+            alert('Preencha todos os campos corretamente');
+        } else if(lista_fluxo.value == 1 && (aluguel >= 1500 && aluguel < 2000)) {
+            resultado.innerHTML = `
+            <b>Setor ${nomeSetor}</b> <br> 
+            Aluguel por loja: R$${aluguel} <br>
+            Ganhos totais no setor: R$${ganhosSetor} <br>
+            <span style = "color: green">O valor de R$${aluguel} é o ideal!</span>`;
+        } else if (lista_fluxo.value == 1) {
+            resultado.innerHTML = `
+            <b>Setor ${nomeSetor}</b> <br> 
+            Aluguel por loja: R$${aluguel} <br>
+            Ganhos totais no setor: R$${ganhosSetor} <br>
+            <span style = "color: red">O valor de R$${aluguel} NÃO é o ideal!</span> <br>
+            O shopping pode ter um prejuízo de <span style = "color: red"><u><b>R$${prejuizo} por mês</b></u></span>`;
+        } else if(lista_fluxo.value == 2 && (aluguel >= 2000 && aluguel < 3500)) {
+            resultado.innerHTML = `
+            <b>Setor ${nomeSetor}</b> <br> 
+            Aluguel por loja: R$${aluguel} <br>
+            Ganhos totais no setor: R$${ganhosSetor} <br>
+            <span style = "color: green">O valor de R$${aluguel} é o ideal!</span>`;
+        } else if(lista_fluxo.value == 2 && aluguel < 2000) {
+            resultado.innerHTML = `
+            <b>Setor ${nomeSetor}</b> <br> 
+            Aluguel por loja: R$${aluguel} <br>
+            Ganhos totais no setor: R$${ganhosSetor} <br>
+            <span style = "color: red">O valor de R$${aluguel} está ABAIXO do ideal!</span> <br>
+            Preço sugerido de aluguel: <span style = "color: green">R$${lucroNormal}</span>`;
+        } else if(lista_fluxo.value == 2 && aluguel >= 3500) {
+            resultado.innerHTML = `
+            <b>Setor ${nomeSetor}</b> <br> 
+            Aluguel por loja: R$${aluguel} <br>
+            Ganhos totais no setor: R$${ganhosSetor} <br>
+            <span style = "color: red">O valor de R$${aluguel} está ACIMA do ideal!</span> <br>
+            O shopping pode ter um prejuízo de <span style = "color: red"><u><b>R$${prejuizo} por mês</b></u></span>`;
+        } else if(lista_fluxo.value == 3 && (aluguel > 3500 && aluguel <= 6000)) {
+            resultado.innerHTML = `
+            <b>Setor ${nomeSetor}</b> <br> 
+            Aluguel por loja: R$${aluguel} <br>
+            Ganhos totais no setor: R$${ganhosSetor} <br>
+            <span style = "color: green">O valor de R$${aluguel} é o ideal!</span>`;
+        } else if(lista_fluxo.value == 3 && aluguel <= 3500) {
+            resultado.innerHTML = `
+            <b>Setor ${nomeSetor}</b> <br> 
+            Aluguel por loja: R$${aluguel} <br>
+            Ganhos totais no setor: R$${ganhosSetor} <br>
+            <span style = "color: red">O valor de R$${aluguel} está ABAIXO do ideal!</span> <br>
+            Preço sugerido de aluguel: <span style = "color: green">R$${lucroAlto}</span>`;
+        } else if(lista_fluxo.value == 3 && aluguel > 6000) {
+            resultado.innerHTML = `
+            <b>Setor ${nomeSetor}</b> <br> 
+            Aluguel por loja: R$${aluguel} <br>
+            Ganhos totais no setor: R$${ganhosSetor} <br>
+            <span style = "color: red">O valor de R$${aluguel} está ACIMA do ideal!</span> <br>
+            O shopping pode ter um prejuízo de <span style = "color: red"><u><b>R$${prejuizo} por mês</b></u></span>`;
+        }
+
+    }
+
+</script> -->
