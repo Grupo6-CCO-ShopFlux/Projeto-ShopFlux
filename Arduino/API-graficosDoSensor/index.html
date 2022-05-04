@@ -12,31 +12,57 @@
             -webkit-user-select: none;
             -ms-user-select: none;
         }
+
+        body{
+            background-color: #AD4748;
+        }
+
+        .card{
+            border: 1px solid black;
+            border-radius: 20px;
+            padding: 20px;
+            margin: 10px;
+            background-color: #D3C1C1;
+        }
+
+        h1{
+            color: #AD4748;   
+        }
     </style>
 </head>
 
 <body>
-    <div>
-        <h1>Sensor DHT 11 - Umidade</h1>
-        <section style="width:100%">
-            <canvas id="dht11Umidade"></canvas>
-        </section>
-        <h1>Sensor DHT 11 - Temperatura</h1>
-        <section style="width: 100%;">
-            <canvas id="dht11Temperatura"></canvas>
-        </section>
-        <h1>Sensor Luminosidade</h1>
-        <section style="width: 100%;">
-            <canvas id="luminosidade"></canvas>
-        </section>
-        <h1>Sensor LM 35 - Temperatura</h1>
-        <section style="width: 100%;">
-            <canvas id="lm35Temperatura"></canvas>
-        </section>
-        <h1>Sensor Chave</h1>
-        <section style="width: 100%;">
-            <canvas id="chave"></canvas>
-        </section>
+    <div class="caixa" style="flex-wrap: wrap; display: flex; justify-content: space-around;">
+        <div class="card">
+            <h1>Sensor DHT 11 - Umidade</h1>
+            <section style="width:40vw">
+                <canvas id="dht11Umidade"></canvas>
+            </section>
+        </div>
+        <div class="card">
+            <h1>Sensor DHT 11 - Temperatura</h1>
+            <section style="width: 40vw">
+                <canvas id="dht11Temperatura"></canvas>
+            </section>
+        </div>
+        <div class="card">
+            <h1>Sensor Luminosidade</h1>
+            <section style="width: 40vw">
+                <canvas id="luminosidade"></canvas>
+            </section>
+        </div>
+        <div class="card">
+            <h1>Sensor LM 35 - Temperatura</h1>
+            <section style="width: 40vw;">
+                <canvas id="lm35Temperatura"></canvas>
+            </section>
+        </div>
+        <div class="card">
+            <h1>Sensor Chave</h1>
+            <section style="width: 40vw;">
+                <canvas id="chave"></canvas>
+            </section>
+        </div>
     </div>
 
     <script>
@@ -107,7 +133,7 @@
                         yAxes: [{
                             scaleLabel: {
                                 display: true,
-                                labelString: 'Luminosidade'
+                                labelString: 'Temperatura'
                             },
                             ticks: {
                                 beginAtZero: true
@@ -172,8 +198,8 @@
                     datasets: [{
                         label: 'Temperatura',
                         type: 'line',
-                        borderColor: ['#ffd902'],
-                        backgroundColor: ['#ffe135']
+                        borderColor: ['red'],
+                        backgroundColor: ['red']
                     }]
                 },
                 options: {
@@ -212,8 +238,8 @@
                     datasets: [{
                         label: 'Chave',
                         type: 'line',
-                        borderColor: ['#ffd902'],
-                        backgroundColor: ['#ffe135']
+                        borderColor: ['green'],
+                        backgroundColor: ['green']
                     }]
                 },
                 options: {
