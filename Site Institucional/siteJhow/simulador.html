@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,61 +9,112 @@
     <title>Simulador financeiro</title>
 </head>
 
-    <body>
+<body>
 
-        <div class="header">
-            <div class="container">
-                
-                <img class="titulo" src="imgs/logoTransparente.png" alt="">
-    
-    
-                <ul class="navBar">
-                    <li class="atual"><a href="index.html">Home</a></li>
-                    <li><a href="">Simulador</a></li>
-                    <li><a href="login.html">Login</a></li>
-                    <li><a href="cadastro.html">Cadastro</a></li>
-                </ul>
-            </div>
-    
+    <div class="header">
+        <div class="container">
+
+            <img class="titulo" src="imgs/logoTransparente.png" alt="">
+
+
+            <ul class="navBar">
+                <li class="atual"><a href="index.html">Home</a></li>
+                <li><a href="">Simulador</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="cadastro.html">Cadastro</a></li>
+            </ul>
         </div>
 
-        <img class="vetor1" src="imgs/vetorMenor.png" alt="">
-        <img class="vetor2" src="imgs/vetorMenor.png" alt="">
+    </div>
+    <img class="vetor1" src="imgs/vetorMenor.png" alt="">
+    <img class="vetor2" src="imgs/vetorMenor.png" alt="">
 
-        <h1>Calcule os lucros do seu shopping</h1>
+    <h4>
+        Por que você deveria usar a nossa solução em seu mercado?
+    </h4>
 
-        <p>Por que você deveria usar a nossa solução em seu mercado?
-            Para começar, vou explicar um pouco da ideia do projeto. Nossa ideia é coletar informações do fluxo dos corredores do mercado com a ajuda de sensores de proximidade. Desse modo, é possível avaliar por quanto tempo o cliente fica em cada corredor, quais são os corredores mais movimentados e analisar os impactos de mudanças. Isso faz com que seja possível remanejar os produtos de acordo com esses dados para obter mais lucros, conseguindo sempre adquirir informações de maneira rápida e fácil.
-            
-            Com a calculadora abaixo você saberá os seguintes itens do seu mercado: lucro bruto, lucro líquido, margem bruta e margem líquida. Assim, é possível fazer um comparativo de qual é o seu lucro e com o lucro que você obterá organizando as gôndolas, uma vez que é possível aumentar as vendas em até 20% com a estruturação dos produtos.</p>
+    <p>
+        A ShopFlux coleta informações do fluxo dos corredores do mercado com a ajuda de sensores de proximidade. Desse modo, é <br> possível avaliar por quanto tempo o cliente fica em cada corredor, quais são os corredores mais movimentados e analisar os <br> impactos de mudanças. Isso faz com que seja possível remanejar os produtos de acordo com esses dados para obter mais lucros, <br> conseguindo sempre adquirir informações de maneira rápida e fácil.
+    </p>
 
-        Digite o nome do setor: <br>
-        <input type="text" id="inpt_nomeSetor" placeholder="Ex: A, B, C"> <br><br>
+    
 
-        Qual a quantidade de lojas nesse setor? <br>
-        <input type="text" id="inpt_qtdLojas" placeholder="Ex: 7"> <br><br>
+    <img class="triangulo" src="imgs/VetTri.png" alt="">
 
-        Qual o preço médio dos aluguéis? <br>
-        <input type="text" id="inpt_aluguel" placeholder="Ex: 3000"><br><br>
+    
+    <div class="bgCalc">
 
-        Qual o fluxo desse setor? <br>
-        <select id="lista_fluxo">
-            <option value="0">-- Selecione --</option>
-            <option value="1">Baixo</option>
-            <option value="2">Normal</option>
-            <option value="3">Alto</option>
-        </select> <br><br>
+        <div class="calculadora">
 
-        <button onclick="calcular()">Calcular</button> <br><br>
+            <div class="cards_calculadora">
 
-        <div id="resultado"></div>
+                <div class="inputs_calculadora">
 
+                  
+                    <div class="alinhamento_calculadora">
+
+                        <div class="titulo_calculadora">
+                            <h2>Descubra o quanto você pode economizar</h2>
+                        </div>
+
+                        <h4>Preencha os campos abaixo:</h4>
+                        
+                        <h3>Digite o nome do setor:</h3><br>
+                        <input type="text" id="inpt_nomeSetor" placeholder="Ex: A, B, C">
+                        <br>
+                        
+                        <h3>Qual a quantidade de lojas nesse setor:</h3><br>
+                        <input type="text" id="inpt_qtdLojas" placeholder="Ex: 7">
         
+                        <h3>Qual o preço médio dos aluguéis:</h3><br>
+                        <input type="text" id="inpt_aluguel" placeholder="Ex: 3000"><br><br><br>
 
-    </body>
+                        Qual o fluxo desse setor: <br><br>
+                        <select id="lista_fluxo">
+                            <option value="0">Selecione</option>
+                            <option value="1">Baixo</option>
+                            <option value="2">Normal</option>
+                            <option value="3">Alto</option>
+                        </select> 
+
+                    </div>
+        
+                    <h5>Selecione o período de cálculo:</h5>
+
+                    <input type="range" id="vol" name="vol" min="0" max="10">
+
+                    <button class="economizar" onclick="calcular()">
+                        Calcular
+                    </button>
+
+                </div>
+                
+                <div class="resultados">
+                    <div style="display: none;" class="valor" id="div_periodo"></div>
+        
+                    <span id="spn_aguardo" class="span_aguardo">Aguardando input<br>
+                        Preencha os campos da esquerda para continuar</span>
+        
+                    <div class="watts_resultado">
+                        <span style="display: none;" id="span_numero">0.00</span><span style="display: none;" id="span_kwh"
+                            class="span_kwh">Kwh</span>
+                    </div>
+                    
+                    <div id="mensagem"></div>
+                    <div style="display: none;" id="msg_cadastro" class="mensagem_cadastro">
+                        <h4>Cadastre-se e faça sua solicitação:</h4>
+                        <span><a href="cadastro.html"><button>Cadastre-se</button></a></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="resultado"></div>
+</body>
 
 </html>
-<!-- <script>
+<script>
 
     function calcular() {
 
@@ -133,4 +185,451 @@
 
     }
 
-</script> -->
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div id="scene">
+
+        <div id="left-zone">
+
+            <ul class="list">
+
+                <li class="item">
+
+                    <input type="radio" id="radio_The garden strawberry (or simply strawberry /ˈstrɔːbᵊri/; Fragaria × ananassa) is a widely grown hybrid species of the genus Fragaria (collectively known as the strawberries)" name="basic_carousel" value="The garden strawberry (or simply strawberry /ˈstrɔːbᵊri/; Fragaria × ananassa) is a widely grown hybrid species of the genus Fragaria (collectively known as the strawberries)" checked="checked"/>
+
+                    <label class="label_strawberry" for="radio_The garden strawberry (or simply strawberry /ˈstrɔːbᵊri/; Fragaria × ananassa) is a widely grown hybrid species of the genus Fragaria (collectively known as the strawberries)">Custos fixos</label>
+
+                    <div class="content content_strawberry"><span class="picto"></span>
+
+                        <h1>Custos fixos</h1>
+                        <p style="color: black;">são aqueles que ocorrem independentemente da produção, ou seja, não importa se o supermercado vai vender muito ou pouco, eles não mudam.Exemplos: custos com aluguel, internet, salário de funcionários.
+                        </p>
+                        
+                    </div>
+
+                </li>
+
+                <li class="item">
+
+                    <input type="radio"
+                    id="radio_A banana is an edible fruit, botanically a berry, produced by several kinds of large herbaceous flowering plants in the genus Musa."
+
+                    name="basic_carousel"
+                    
+                    value="A banana is an edible fruit, botanically a berry, produced by several kinds of large herbaceous flowering plants in the genus Musa." />
+
+                    <label class="label_banana"
+                        for="radio_A banana is an edible fruit, botanically a berry, produced by several kinds of large herbaceous flowering plants in the genus Musa.">Custos variáveis
+                    </label>
+
+                    <div class="content content_banana"> <span class="picto"></span>
+                        <h1>Custos variáveis</h1>
+
+                        <p style="color: black;">
+                            são aqueles que estão diretamente ligados com a produção ou venda de algum produto. Exemplos: valor pago ao fornecedor e os tributos.
+                        </p>
+                    </div>
+
+                </li>
+
+                <li class="item">
+                    <input type="radio"
+                        id="radio_The apple tree (Malus domestica) is a deciduous tree in the rose family best known for its sweet, pomaceous fruit, the apple. It is cultivated worldwide as a fruit tree, and is the most widely grown species in the genus Malus."
+                        name="basic_carousel"
+                        value="The apple tree (Malus domestica) is a deciduous tree in the rose family best known for its sweet, pomaceous fruit, the apple. It is cultivated worldwide as a fruit tree, and is the most widely grown species in the genus Malus."
+                    />
+
+                    <label class="label_apple"
+                        for="radio_The apple tree (Malus domestica) is a deciduous tree in the rose family best known for its sweet, pomaceous fruit, the apple. It is cultivated worldwide as a fruit tree, and is the most widely grown species in the genus Malus.">Lucro bruto
+                    </label>
+                    
+                    <div class="content content_apple"><span class="picto"></span>
+                        <h1>Lucro bruto</h1>
+
+                        <p style="color: black;">
+                            é o valor que uma empresa obtém depois de deduzir os custos variáveis, ou seja, aqueles que associados à fabricação e venda de seus produtos ou então ao fornecimento de seus serviços.
+                        </p>
+
+                    </div>
+
+                </li>
+
+                <li class="item">
+                    <input type="radio"
+                        id="radio_The orange (specifically, the sweet orange) is the fruit of the citrus species Citrus × sinensis in the family Rutaceae."
+                        name="basic_carousel"
+                        value="The orange (specifically, the sweet orange) is the fruit of the citrus species Citrus × sinensis in the family Rutaceae."
+                    />
+
+                    <label class="label_orange"
+                        for="radio_The orange (specifically, the sweet orange) is the fruit of the citrus species Citrus × sinensis in the family Rutaceae.">Lucro líquido
+                    </label>
+
+                    <div class="content content_orange"><span class="picto"></span>
+                        <h1>Lucro líquido</h1>
+
+                        <p style="color: black;">representa o lucro restante depois que todo o custo e as despesas foram deduzidos da receita total em um determinado período.</p>
+                    </div>
+
+                </li>
+
+                <li class="item">
+                    <input type="radio"
+                        id="radio_The orange (specifically, the sweet orange) is the fruit of the citrus species Citrus sinensis in the family Rutaceae."
+                        name="basic_carousel"
+                        value="The orange (specifically, the sweet orange) is the fruit of the citrus species Citrus sinensis in the family Rutaceae."
+                    />
+
+                    <label class="labelOrange"
+                        for="radio_The orange (specifically, the sweet orange) is the fruit of the citrus species Citrus sinensis in the family Rutaceae.">margem bruta
+                    </label>
+
+                    <div class="content content_orange"><span class="picto"></span>
+                        <h1>margem bruta</h1>
+
+                        <p style="color: black;">é a rentabilidade do seu negócio, ou seja, qual a porcentagem de lucro que você ganha com cada venda.</p>
+                    </div>
+
+                </li>
+
+                <li class="item">
+                    <input type="radio"
+                        id="radio_The orange (specifically, the sweet orange) is the fruit of the citrus species Citrus sinensis in the family Rutaceae."
+                        name="basic_carousel"
+                        value="The orange (specifically, the sweet orange) is the fruit of the citrus species Citrus sinensis in the family Rutaceae."
+                    />
+
+                    <label class="label"
+                        for="radio_The orange (specifically, the sweet orange) is the fruit of the citrus species Citrus sinensis in the family Rutaceae.">Margem líquida
+                    </label>
+
+                    <div class="content content_orange"><span class="picto"></span>
+                        <h1>Margem líquida</h1>
+
+                        <p style="color: black;">É o lucro líquido que a empresa faz para cada real em receita.</p>
+                    </div>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+        <div id="middle-border"></div>
+        <div id="right-zone"></div>
+    </div> -->
+
+
+
+    <!-- --------------------CSScARRO---------
+    @-webkit-keyframes slidein {
+        0% {
+          top: -400px;
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+          top: 0px;
+        }
+      }
+      @keyframes slidein {
+        0% {
+          top: 100px;
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+          top: 0px;
+        }
+      }
+    
+      @-webkit-keyframes slideout {
+        0% {
+          top: 0;
+          opacity: 1;
+        }
+        100% {
+          top: -400px;
+          opacity: 0;
+        }
+      }
+      @keyframes slideout {
+        0% {
+          top: 0;
+          opacity: 1;
+        }
+        100% {
+          top: -400px;
+          opacity: 0;
+        }
+      }
+    
+      /* body {
+        background: #eee;
+        font-family: "Tahoma";
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      } */
+    
+      body #scene {
+        display: flex;
+        align-items: center;
+        justify-content: left;
+        width: 80%;
+        height: 400px;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        background-color: #fff;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        overflow: hidden;
+      }
+      body #scene #left-zone {
+        background: #fff;
+        height: 75%;
+        flex-grow: 0;
+        display: flex;
+        width: 350px;
+        align-items: center;
+        justify-content: left;
+      }
+      body #scene #left-zone .list {
+        display: flex;
+        list-style: none;
+        align-content: stretch;
+        flex-direction: column;
+        flex-grow: 1;
+        margin: 0;
+        padding: 0;
+      }
+      body #scene #left-zone .list li.item input[type=radio] {
+        display: none;
+      }
+      body #scene #left-zone .list li.item input[type=radio] ~ label {
+        display: block;
+        opacity: 0.5;
+        height: 50px;
+        text-align: center;
+        line-height: 50px;
+      }
+      body #scene #left-zone .list li.item input[type=radio] ~ label:first-letter {
+        text-transform: uppercase;
+      }
+      body #scene #left-zone .list li.item input[type=radio] ~ label:hover {
+        opacity: 0.75;
+        cursor: pointer;
+      }
+      body #scene #left-zone .list li.item input[type=radio] ~ label.label_strawberry:before {
+        content: " ";
+        display: block;
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        margin-left: 15px;
+        background-image: url("https://d30y9cdsu7xlg0.cloudfront.net/png/83067-200.png");
+        background-position: center;
+        background-size: 75% 75%;
+        background-repeat: no-repeat;
+      }
+      body #scene #left-zone .list li.item input[type=radio] ~ label.label_banana:before {
+        content: " ";
+        display: block;
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        margin-left: 15px;
+        background-image: url("https://d30y9cdsu7xlg0.cloudfront.net/png/53209-200.png");
+        background-position: center;
+        background-size: 75% 75%;
+        background-repeat: no-repeat;
+      }
+      body #scene #left-zone .list li.item input[type=radio] ~ label.label_apple:before {
+        content: " ";
+        display: block;
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        margin-left: 15px;
+        background-image: url("https://d30y9cdsu7xlg0.cloudfront.net/png/14333-200.png");
+        background-position: center;
+        background-size: 75% 75%;
+        background-repeat: no-repeat;
+      }
+    
+      body #scene #left-zone .list li.item input[type=radio] ~ label.label_orange:before {
+        content: " ";
+        display: block;
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        margin-left: 15px;
+        background-image: url("https://d30y9cdsu7xlg0.cloudfront.net/png/9636-200.png");
+        background-position: center;
+        background-size: 75% 75%;
+        background-repeat: no-repeat;
+      }
+      body #scene #left-zone .list li.item input[type=radio] ~ label.labelOrange:before {
+        content: " ";
+        display: block;
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        margin-left: 15px;
+        background-image: url("https://media.istockphoto.com/vectors/grapes-vector-icon-illustration-design-vector-id1182914195?b=1&k=20&m=1182914195&s=170667a&w=0&h=IsdOWjhLdYZF8cGBoiAs9hH12TfKtHRIzyqYBGmKfDU=");
+        background-position: center;
+        background-size: 75% 75%;
+        background-repeat: no-repeat;
+      }
+      body #scene #left-zone .list li.item input[type=radio] ~ label.label:before {
+        content: " ";
+        display: block;
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        margin-left: 15px;
+        background-image: url("https://cdn2.vectorstock.com/i/1000x1000/74/66/lemon-simple-art-geometric-vector-24347466.jpg");
+        background-position: center;
+        background-size: 75% 75%;
+        background-repeat: no-repeat;
+      }
+    
+      body #scene #left-zone .list li.item input[type=radio] ~ .content {
+        position: absolute;
+        left: 350px;
+        top: -400px;
+        width: 650px;
+        height: 400px;
+        -webkit-animation-duration: 0.75s;
+                animation-duration: 0.75s;
+        -webkit-animation-name: slideout;
+                animation-name: slideout;
+        -webkit-animation-timing-function: ease-out;
+                animation-timing-function: ease-out;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+      body #scene #left-zone .list li.item input[type=radio] ~ .content.content_strawberry .picto {
+        height: 100px;
+        width: 100px;
+        background-image: url("https://d30y9cdsu7xlg0.cloudfront.net/png/83067-200.png");
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+      body #scene #left-zone .list li.item input[type=radio] ~ .content.content_strawberry h1 {
+        color: #D64541;
+      }
+      body #scene #left-zone .list li.item input[type=radio] ~ .content.content_banana .picto {
+        height: 100px;
+        width: 100px;
+        background-image: url("https://d30y9cdsu7xlg0.cloudfront.net/png/53209-200.png");
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+      body #scene #left-zone .list li.item input[type=radio] ~ .content.content_banana h1 {
+        color: #F5D76E;
+      }
+      body #scene #left-zone .list li.item input[type=radio] ~ .content.content_apple .picto {
+        height: 100px;
+        width: 100px;
+        background-image: url("https://d30y9cdsu7xlg0.cloudfront.net/png/14333-200.png");
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+      body #scene #left-zone .list li.item input[type=radio] ~ .content.content_apple h1 {
+        color: #00B16A;
+      }
+      body #scene #left-zone .list li.item input[type=radio] ~ .content.content_orange .picto {
+        height: 100px;
+        width: 100px;
+        background-image: url("https://d30y9cdsu7xlg0.cloudfront.net/png/9636-200.png");
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+      body #scene #left-zone .list li.item input[type=radio] ~ .content.content_orange h1 {
+        color: #F27935;
+      }
+      body #scene #left-zone .list li.item input[type=radio] ~ .content h1:first-letter {
+        text-transform: uppercase;
+      }
+      body #scene #left-zone .list li.item input[type=radio] ~ .content p {
+        max-width: 50%;
+        text-align: center;
+      }
+      body #scene #left-zone .list li.item input[type=radio]:checked ~ label {
+        opacity: 1;
+        -webkit-animation: all 1s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+                animation: all 1s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+      }
+      body #scene #left-zone .list li.item input[type=radio]:checked ~ label.label_strawberry {
+        color: #D64541;
+        border-right: solid 4px #D64541;
+      }
+      body #scene #left-zone .list li.item input[type=radio]:checked ~ label.label_banana {
+        color: #F5D76E;
+        border-right: solid 4px #F5D76E;
+      }
+      body #scene #left-zone .list li.item input[type=radio]:checked ~ label.label_apple {
+        color: #00B16A;
+        border-right: solid 4px #00B16A;
+      }
+      body #scene #left-zone .list li.item input[type=radio]:checked ~ label.label_orange {
+        color: #F27935;
+        border-right: solid 4px #F27935;
+      }
+      body #scene #left-zone .list li.item input[type=radio]:checked ~ .content {
+        -webkit-animation-duration: 0.75s;
+                animation-duration: 0.75s;
+        -webkit-animation-name: slidein;
+                animation-name: slidein;
+        -webkit-animation-fill-mode: forwards;
+                animation-fill-mode: forwards;
+        -webkit-animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+                animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+      }
+      body #scene #middle-border {
+        background-color: #eee;
+        height: 75%;
+        flex-grow: 1;
+        max-width: 2px;
+        z-index: 0;
+      }
+      body #scene #right-zone {
+        background: #fff;
+        height: 100%;
+        flex-grow: 3;
+      } -->
