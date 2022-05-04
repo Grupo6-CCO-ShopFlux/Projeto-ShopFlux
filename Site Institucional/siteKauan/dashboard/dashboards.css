@@ -237,7 +237,6 @@ canvas #myChart {
   height: 30%;
   border-radius: 50px;
   margin-top: 6%;
-  /* background-color: #c7c7c7; */
 }
 
 .btns-dash {
@@ -253,7 +252,7 @@ canvas #myChart {
   margin-left: 30px;
   justify-content: flex-start;
   position: absolute;
-  padding-top: 45px;
+  padding-top: 9px;
 }
 
 .graph2 {
