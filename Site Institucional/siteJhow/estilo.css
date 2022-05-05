@@ -74,7 +74,7 @@ a{
     font-weight: normal;
     text-align: justify;
     font-family: 'Open Sans', sans-serif;
-    color: white;
+    color: #AE4848;
 }
 
 .btBanner {
@@ -93,7 +93,7 @@ a{
     width: 20%;
     height: 25%;
     background-color: transparent;
-    color: rgba(255, 255, 255, 0.781);
+    color: #AE4848;
     box-shadow: 1px 5px 10px rgba(2, 2, 2, 0.418);
 }
 

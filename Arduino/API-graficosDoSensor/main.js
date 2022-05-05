@@ -6,7 +6,7 @@ const mysql = require('mysql2');
 /* Define as variáveis const */
 const SERIAL_BAUD_RATE = 9600;
 const SERVIDOR_PORTA = 3000;
-const HABILITAR_OPERACAO_INSERIR = true;
+const HABILITAR_OPERACAO_INSERIR = false;
 
 /* Função que faz a leitura dos dados do serial port*/
 const serial = async (

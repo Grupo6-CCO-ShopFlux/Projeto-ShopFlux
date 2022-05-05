@@ -38,7 +38,8 @@ a {
   margin-top: 90px;
   display: flex;
   flex-direction: column;
-  color: rgb(255, 255, 255);
+  /* color: rgb(255, 255, 255); */
+    color: #e43b3b;
   align-items: center;
 }
 

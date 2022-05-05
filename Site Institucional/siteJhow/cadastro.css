@@ -3,6 +3,7 @@ body {
     margin: 0;
     background: #D2C1C1;
     font-family: monospace;
+    color: #e43b3b; 
 }
 
 
@@ -86,7 +87,7 @@ ul li a{
     margin-top: 10px;
     display: flex;
     flex-direction: column;
-    color: rgb(255, 255, 255);
+    /* color: rgb(255, 255, 255); */
     align-items: center;
 }
 

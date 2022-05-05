@@ -1,8 +1,9 @@
 body {
     margin: 0;
     background: #D2C1C1;
-    color: white;
+    color: #AE4848;
     font-family: monospace;
+    color: white;
 }
 
 
@@ -86,9 +87,17 @@ a{
 }
 /* fim dos vetores */
 
+h3 {
+    color: white;
+}
+
 h4{
     margin-top: 150px;
     margin-left: 33%;
+}
+h5{
+    color: white;
+
 }
 
 p{
@@ -97,6 +106,7 @@ p{
     line-height: 25px;
     margin-top: 50px;
     margin-left: 170px;
+    
 }
 
 .triangulo{
@@ -325,4 +335,9 @@ p{
     width: 100px;
     height:75px;
     background-size: 100px;
+}
+
+#lista_fluxo{
+    width: 120px;
+    border-radius: 5px;
 }
