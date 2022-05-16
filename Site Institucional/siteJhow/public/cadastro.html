@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - ShopFlux</title>
+
+    <script src="./js/funcoes.js"></script>
+
+    <link rel="icon" href="./assets/icon/logoTransparente.png">
+    <link rel="stylesheet" href="css/cadastro.css">
+</head>
+<body>
+    <!-- Nosso cabeçalho -->
+    <div class="header">
+        <div class="container">
+            
+            <img class="titulo" src="assets/imgs/logoTransparente.png" alt="">
+
+
+            <ul class="navBar">
+                <li class="atual"><a href="index.html">Home</a></li>
+                <li><a href="simulador.html">Simulador</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="cadastro.html">Cadastro</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+    <img class="vetor1" src="assets/imgs/vetorMenor.png" alt="">
+    <img class="vetor2" src="assets/imgs/vetorMenor.png" alt="">
+
+    <div class="bgCad">
+       <div class="contCad">
+            <h1>Faça seu Cadastro</h1>
+
+            <span class="txtCad1">Nome Completo</span>
+            <input id="nome_input" placeholder="digite aqui">
+            <br><br>
+
+            <span class="txtCad2">E-mail</span>
+            <input id="email_input" placeholder="seuemail@email.com">
+            <br><br>
+
+            <span class="txtCad3">Senha</span>
+            <input type="password" id="senha_input" placeholder="*******">
+            <br><br>
+
+            <span class="txtCad4">Telefone</span>
+            <input type="tel" id="telefone_input" placeholder="(__) _ ____-____">
+            <br><br>
+
+            <span class="txtCad5">CPF</span>
+            <input id="cpf_input" placeholder="___.___.___-__">
+            <br><br>
+
+            <button class="btCad" onclick="cadastrar()">Cadastrar</button>
+            <br><br>
+            
+            <a href="login.html">Você já tem um cadastro?</a>
+            <br><br>
+        </div>
+    </div>
+
+    <footer id="myFooter">
+        <div class="container">
+            <div class="row">
+                
+                <div class="coluna">
+                    <h5>Inicio</h5>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="">Simulador</a></li>
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="cadastro.html">Cadastro</a></li>
+                    </ul>
+                </div>
+                <div class="coluna">
+                    <h5>Sobre-nós</h5>
+                    <ul>
+                        <li><a href="">Informações da Empresa</a></li>
+                        <li><a href="">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="coluna">
+                    <h5>Suporte</h5>
+                    <ul>
+                        <li><a href="">FAQ</a></li>
+                        <li><a href="">Telefones</a></li>
+                        <li><a href="">E-mail</a></li>
+                    </ul>
+                </div>
+                <div class="colunaSocial">
+                    <div class="social-networks">
+                        <a href="" class="instagram"><img src="assets/imgs/instagram.png"></a>
+                        <a href="" class="whatsapp"><img src="assets/imgs/whatsapp.png"></a>
+                        <a href="" class="facebook"><img src="assets/imgs/facebook.png"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <p>© 2022 Copyright - SHOPFLUX</p>
+        </div>
+    </footer>
+</body>
+</html>
+<script>
+
+    function cadastrar() {
+        //aguardar();
+
+        var nomeVar = nome_input.value;
+        var emailVar = email_input.value;
+        var senhaVar = senha_input.value;
+        var telefoneVar = telefone_input.value;
+        var cpfVar = cpf_input.value;
+
+        if (nomeVar == "" || emailVar == "" || senhaVar == "" || telefoneVar == "" || cpfVar == "") {
+            alert("ERRO - Campos em branco!");
+
+            //finalizarAguardar();
+            return false;
+        }
+        /*else {
+            setInterval(sumirMensagem, 5000)
+        }*/
+
+        if (cpfVar.length != 11) {
+            alert("Ops, CPF inválido! Verifique e tente novamente.");
+            /*
+            cardErro.style.display = "block";
+            mensagem_erro.innerHTML = "Ops, CPF inválido! Verifique e tente novamente.";
+            finalizarAguardar();
+            */
+            return false;
+        }
+        /*else {
+            setInterval(sumirMensagem, 5000)
+        }*/
+
+        if (telefoneVar.length != 11) {
+            alert("Ops, telefone inválido! Verifique e tente novamente.");
+            /*
+            cardErro.style.display = "block";
+            mensagem_erro.innerHTML = "Ops, CPF inválido! Verifique e tente novamente.";
+            finalizarAguardar();
+            */
+            return false;
+        }
+        /*else {
+            setInterval(sumirMensagem, 5000)
+        }*/
+
+        if (emailVar.indexOf("@") == -1 || emailVar.indexOf(".com") == -1) {
+            alert("Ops, e-mail inválido! Verifique e tente novamente.");
+            /*
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "Ops, e-mail inválido! Verifique e tente novamente.";
+            finalizarAguardar();
+            */
+            return false;
+        }
+        /*else {
+            setInterval(sumirMensagem, 5000)
+        }*/
+
+        if (senhaVar.length < 5) {
+            alert("A senha é muito pequena! Tente novamente.");
+            /*
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "A senha é muito pequena!";
+            finalizarAguardar();
+            */
+            return false;
+        }
+        /*else {
+            setInterval(sumirMensagem, 5000)
+        }*/
+
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                nomeServer: nomeVar,
+                emailServer: emailVar,
+                senhaServer: senhaVar,
+                telefoneServer: telefoneVar,
+                cpfServer: cpfVar
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                alert("Cadastro realizado com sucesso! Redirecionando para tela de Login...");
+                /*
+                cardErro.style.display = "block";
+
+                mensagem_erro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+                */
+
+                setTimeout(() => {
+                    window.location = "login.html";
+                }, "2000")
+                
+                limparFormulario();
+                finalizarAguardar();
+            } else {
+                alert("Houve um erro ao tentar realizar o cadastro!");
+                //throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            finalizarAguardar();
+        });
+
+        return false;
+    }
+
+    /*
+    function sumirMensagem() {
+        cardErro.style.display = "none"
+    }
+    */
+
+</script>

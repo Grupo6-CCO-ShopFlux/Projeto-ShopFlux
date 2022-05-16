@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - ShopFlux</title>
+
+    <script src="./js/funcoes.js"></script>
+
+    <link rel="icon" href="./assets/icon/favicon.ico">
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+    <!-- Nosso cabeçalho -->
+    <div class="header">
+        <div class="container">
+            
+            <img class="titulo" src="assets/imgs/logoTransparente.png" alt="">
+
+
+            <ul class="navBar">
+                <li class="atual"><a href="index.html">Home</a></li>
+                <li><a href="simulador.html">Simulador</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="cadastro.html">Cadastro</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+        <img class="vetor1" src="assets/imgs/vetorMenor.png" alt="">
+        <img class="vetor2" src="assets/imgs/vetorMenor.png" alt="">
+
+    <div class="bgLogin">
+        <div class="contlogin">
+            <h1> Login</h1>
+
+            <p>Faça login e comece a gerenciar seus dados!</p>
+
+            <span class="txt">E-mail</span> 
+            <input id="email_input" placeholder="nome@email.com">
+
+            <br><br>
+
+            <span class="txt">Senha</span> 
+            <input type="password" id="senha_input" placeholder="**********">
+
+        </div> <br>
+
+        <div class="check">
+            <input type="checkbox">Lembre-me <span style="color: #AE4848;">esqueceu a senha?</span>
+        </div> <br>
+
+        <button class="btLogin" onclick="entrar()">Entrar</button>
+    </div>
+
+    <!-- <footer id="myFooter">
+        <div class="container">
+            <div class="row">
+                
+                <div class="coluna">
+                    <h5>Inicio</h5>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="">Simulador</a></li>
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="cadastro.html">Cadastro</a></li>
+                    </ul>
+                </div>
+                <div class="coluna">
+                    <h5>Sobre-nós</h5>
+                    <ul>
+                        <li><a href="">Informações da Empresa</a></li>
+                        <li><a href="">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="coluna">
+                    <h5>Suporte</h5>
+                    <ul>
+                        <li><a href="">FAQ</a></li>
+                        <li><a href="">Telefones</a></li>
+                        <li><a href="">E-mail</a></li>
+                    </ul>
+                </div>
+                <div class="colunaSocial">
+                    <div class="social-networks">
+                        <a href="" class="instagram"><img src="assets/imgs/instagram.png"></a>
+                        <a href="" class="whatsapp"><img src="assets/imgs/whatsapp.png"></a>
+                        <a href="" class="facebook"><img src="assets/imgs/facebook.png"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <p>© 2022 Copyright - SHOPFLUX</p>
+        </div>
+    </footer> -->
+</body>
+</html>
+<script>
+
+    function entrar() {
+        //aguardar();
+
+        var emailVar = email_input.value;
+        var senhaVar = senha_input.value;
+
+        if (emailVar == "" || senhaVar == "") {
+            alert("Preencha todos os campos para prosseguir!");
+            /*
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "(Preencha todos os campos para prosseguir!)";
+            finalizarAguardar();
+            */
+            return false;
+        }
+        /*
+        else {
+            setInterval(sumirMensagem, 5000)
+        }
+        */
+
+        if (emailVar.indexOf("@") == -1 || emailVar.indexOf(".com") == -1) {
+            alert("Ops, e-mail inválido! Verifique e tente novamente.");
+            /*
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "Ops, e-mail inválido! Verifique e tente novamente.";
+            finalizarAguardar();
+            */
+            return false;
+        }
+        /*
+        else {
+            setInterval(sumirMensagem, 5000)
+        }
+        */
+
+        if (senhaVar.length < 5) {
+            alert("Ops, a senha é muito pequena! Verifique e tente novamente.");
+            /*
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "A senha é muito pequena!";
+            finalizarAguardar();
+            */
+            return false;
+        }
+        /*else {
+            setInterval(sumirMensagem, 5000)
+        }*/
+
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.id;
+
+                    setTimeout(function () {
+                        window.location = "./dashboard/cards.html";
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizarAguardar(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
+</script>
