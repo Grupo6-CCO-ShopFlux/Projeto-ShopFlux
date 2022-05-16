@@ -1,11 +1,13 @@
 /* Começo do cabeçalho */
 body {
   margin: 0;
-  background: #D2C1C1;
-  color: white;
-  background-repeat: no-repeat;
-  width: 100%;
-  font-family: monospace;
+  /* background: #D2C1C1; */
+    color: white;
+    background: linear-gradient(180deg, #D2C1C1 0%, #D2C1C1 96.35%, #C8705C 100%);
+    background-repeat: no-repeat;
+    /* width: 100%; */
+    height: 617px;
+    font-family: monospace;
 }
 
 .navBar {
@@ -28,10 +30,10 @@ a {
 
 .bgLogin{
   /* height: 500px; */
-  background-position: center;
-  background-repeat: no-repeat;
+  /* background-position: center;
+  background-repeat: no-repeat; */
   /* background-size: cover; */
-  position: relative;
+  /* position: relative; */
 }
 
 .bgLogin .contlogin {
@@ -139,143 +141,3 @@ ul li a{
   /* width: 250px; */
   /* justify-content: right; */
 }
-
-
-/* inicio do rodapé */
-/* .footer {
-  background-color: #AE4848;
-  height: 10px;
-  color: #fff;
-  display: flex;
-  font-size: 15px;
-} */
-
-/* .footer .container {
-  justify-content: center;
-}  */
-
-/* .banner .container .card {
-  background-color: beige;
-  height: 400px;
-  width: 400px;
-  display: flex;
-  flex-direction: column;
-  color: palevioletred;
-  align-items: center;
-  border-radius: 4px;
-} */
-
-/* .card h1 {
-  font-size: 30px;
-}
-
-.card h4 {
-  font-size: 16px;
-}
-
-.card input {
-  border: palevioletred solid 2px;
-  padding: 10px;
-  text-align: center;
-}
-
-.card button {
-  width: 100px;
-  height: 50px;
-  background-color: palevioletred;
-  margin-top: 25px;
-  font: 700 20px monospace;
-  border: 0;
-  border-radius: 4px; 
-  color: #fff;
-  cursor: pointer;
-}
-
-#myFooter {
-  background-color: rgb(150,28,28);
-  color: white;
-  padding-top: 30px;
-  width: 100%;
-}
-
-#myFooter .footer-copyright {
-  background-color: rgb(88, 0, 0);
-  padding-top: 3px;
-  padding-bottom: 3px;
-  text-align: center;
-}
-
-#myFooter .row {
-  margin-bottom: 60px;
-  display: flex;
-}
-
-.colunaLogo img{
-  width: 200px;
-  padding-top: 22px;
-  padding-right: 15px;
-}
-
-.coluna {
-  margin-right: 50px;
-  margin-left: 50px;
-}
-
-.colunaSocial {
-  margin-left: 90px;
-}
-
-#myFooter .footer-copyright p {
-  margin: 10px;
-  color: #ccc;
-}
-
-#myFooter ul {
-  list-style-type: none;
-  padding-left: 0;
-  line-height: 1.7;
-}
-
-#myFooter h5 {
-  font-size: 18px;
-  color: white;
-  font-weight: bold;
-  margin-top: 30px;
-}
-
-#myFooter a {
-  color: #d2d1d1;
-}
-
-#myFooter a:hover, #myFooter a:focus {
-  color: white;
-}
-
-#myFooter .social-networks {
-  text-align: center;
-  padding-top: 50px;
-  padding-bottom: 16px;
-}
-
-#myFooter .social-networks img {
-  width: 30px;
-  padding: 10px;
-}
-
-#myFooter .btn {
-  color: rgb(88, 0, 0);
-  background-color: white;
-  border-radius: 20px;
-  border: none;
-  width: 150px;
-  display: block;
-  margin: 0 auto;
-  margin-top: 10px;
-  line-height: 25px;
-  cursor: pointer;
-}
-
-#myFooter .btn:hover {
-  background-color: #d2d1d1;
-}  */
-/* fim do rodapé */
