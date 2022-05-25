@@ -1,14 +1,18 @@
-/* Importa as libraries que vão ser usadas no código */
 const serialport = require('serialport');
 const express = require('express');
 const mysql = require('mysql2');
+const sql = require('mssql');
 
-/* Define as variáveis const */
 const SERIAL_BAUD_RATE = 9600;
-const SERVIDOR_PORTA = 3000;
-const HABILITAR_OPERACAO_INSERIR = false;
+const SERVIDOR_PORTA = 3300;
+const HABILITAR_OPERACAO_INSERIR = true;
 
-/* Função que faz a leitura dos dados do serial port*/
+// escolha deixar a linha 'desenvolvimento' descomentada se quiser conectar seu arduino ao banco de dados local, MySQL Workbench
+const AMBIENTE = 'desenvolvimento';
+
+// escolha deixar a linha 'producao' descomentada se quiser conectar seu arduino ao banco de dados remoto, SQL Server
+// const AMBIENTE = 'producao';
+
 const serial = async (
     valoresDht11Umidade,
     valoresDht11Temperatura,
@@ -16,37 +20,41 @@ const serial = async (
     valoresLm35Temperatura,
     valoresChave
 ) => {
-    /* Cria uma conexão com o banco de dados */
-    const poolBancoDados = mysql.createPool(
-        {
-            host: 'localhost',
-            port: 3306,
-            user: 'aluno',
-            password: 'sptech',
-            database: 'sensor'
-        }
-    ).promise();
+    let poolBancoDados = ''
 
-    /* Procura pela porta do arduino */
+    if (AMBIENTE == 'desenvolvimento') {
+        poolBancoDados = mysql.createPool(
+            {
+                // CREDENCIAIS DO BANCO LOCAL - MYSQL WORKBENCH
+                host: 'localhost',
+                user: 'aluno',
+                password: 'sptech',
+                database: 'shopflux'
+            }
+        ).promise();
+    } else if (AMBIENTE == 'producao') {
+
+        console.log('Projeto rodando inserindo dados em nuvem. Configure as credenciais abaixo.')
+
+    } else {
+        throw new Error('Ambiente não configurado. Verifique o arquivo "main.js" e tente novamente.');
+    }
+
+
     const portas = await serialport.SerialPort.list();
     const portaArduino = portas.find((porta) => porta.vendorId == 2341 && porta.productId == 43);
-
-    /* Verifica se o arduino está conectado com o computador */
     if (!portaArduino) {
         throw new Error('O arduino não foi encontrado em nenhuma porta serial');
     }
-    
     const arduino = new serialport.SerialPort(
         {
             path: portaArduino.path,
             baudRate: SERIAL_BAUD_RATE
         }
     );
-    /* Printa uma mensagem no console log quando a leitura do arduino for iniciada */
     arduino.on('open', () => {
         console.log(`A leitura do arduino foi iniciada na porta ${portaArduino.path} utilizando Baud Rate de ${SERIAL_BAUD_RATE}`);
     });
-    /* Faz a leitura dos dados do serial port e salva em arrays */
     arduino.pipe(new serialport.ReadlineParser({ delimiter: '\r\n' })).on('data', async (data) => {
         const valores = data.split(';');
         const dht11Umidade = parseFloat(valores[0]);
@@ -55,29 +63,54 @@ const serial = async (
         const lm35Temperatura = parseFloat(valores[3]);
         const chave = parseInt(valores[4]);
 
-        /* Envia os valores dos sensores dentro do array */
         valoresDht11Umidade.push(dht11Umidade);
         valoresDht11Temperatura.push(dht11Temperatura);
         valoresLuminosidade.push(luminosidade);
         valoresLm35Temperatura.push(lm35Temperatura);
         valoresChave.push(chave);
 
-        /* Inseri os valores no banco de dados */
         if (HABILITAR_OPERACAO_INSERIR) {
-            await poolBancoDados.execute(
-                'INSERT INTO sensores (dht11_umidade, dht11_temperatura, luminosidade, lm35_temperatura, chave) VALUES (?, ?, ?, ?, ?)',
-                [dht11Umidade, dht11Temperatura, luminosidade, lm35Temperatura, chave]
-            );
+
+            if (AMBIENTE == 'producao') {
+
+                // Este insert irá inserir os dados na tabela "medida" -> altere se necessário
+                // Este insert irá inserir dados de fk_aquario id=1 >> você deve ter o aquario de id 1 cadastrado.
+                sqlquery = `INSERT INTO medida (dht11_umidade, dht11_temperatura, luminosidade, lm35_temperatura, chave, momento, fk_aquario) VALUES (${dht11Umidade}, ${dht11Temperatura}, ${luminosidade}, ${lm35Temperatura}, ${chave}, CURRENT_TIMESTAMP, 1)`;
+
+                // CREDENCIAIS DO BANCO REMOTO - SQL SERVER
+                const connStr = "Server=servidor-acquatec.database.windows.net;Database=bd-acquatec;User Id=usuarioParaAPIArduino_datawriter;Password=#Gf_senhaParaAPI;";
+
+                function inserirComando(conn, sqlquery) {
+                    conn.query(sqlquery);
+                    console.log("valores inseridos no banco: ", dht11Umidade + ", " + dht11Temperatura + ", " + luminosidade + ", " + lm35Temperatura + ", " + chave)
+                }
+
+                sql.connect(connStr)
+                    .then(conn => inserirComando(conn, sqlquery))
+                    .catch(err => console.log("erro! " + err));
+
+            } else if (AMBIENTE == 'desenvolvimento') {
+
+                // Este insert irá inserir os dados na tabela "medida" -> altere se necessário
+                // Este insert irá inserir dados de fk_aquario id=1 >> você deve ter o aquario de id 1 cadastrado.
+                await poolBancoDados.execute(
+                    'INSERT INTO medida (dht11_umidade, dht11_temperatura, luminosidade, lm35_temperatura, chave, momento, fk_aquario) VALUES (?, ?, ?, ?, ?, now(), 1)',
+                    [dht11Umidade, dht11Temperatura, luminosidade, lm35Temperatura, chave]
+                );
+                console.log("valores inseridos no banco: ", dht11Umidade + ", " + dht11Temperatura + ", " + luminosidade + ", " + lm35Temperatura + ", " + chave)
+
+            } else {
+                throw new Error('Ambiente não configurado. Verifique o arquivo "main.js" e tente novamente.');
+            }
+
         }
 
     });
-    /* Printa uma mensagem de erro no console log */
     arduino.on('error', (mensagem) => {
         console.error(`Erro no arduino (Mensagem: ${mensagem}`)
     });
 }
 
-/* Uma função que recebe os valores dos sensores e retorna em forma de JSON. */
 const servidor = (
     valoresDht11Umidade,
     valoresDht11Temperatura,
@@ -111,14 +144,12 @@ const servidor = (
     });
 }
 
-/* Cria um array para cada sensor */
 (async () => {
     const valoresDht11Umidade = [];
     const valoresDht11Temperatura = [];
     const valoresLuminosidade = [];
     const valoresLm35Temperatura = [];
     const valoresChave = [];
-    /* Chama a função serial e envia os dados como parametro */
     await serial(
         valoresDht11Umidade,
         valoresDht11Temperatura,
@@ -126,7 +157,6 @@ const servidor = (
         valoresLm35Temperatura,
         valoresChave
     );
-    /* Chama a função servidor e envia os dados como parametro */
     servidor(
         valoresDht11Umidade,
         valoresDht11Temperatura,

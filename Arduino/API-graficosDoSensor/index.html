@@ -12,57 +12,31 @@
             -webkit-user-select: none;
             -ms-user-select: none;
         }
-
-        body{
-            background-color: #AD4748;
-        }
-
-        .card{
-            border: 1px solid black;
-            border-radius: 20px;
-            padding: 20px;
-            margin: 10px;
-            background-color: #D3C1C1;
-        }
-
-        h1{
-            color: #AD4748;   
-        }
     </style>
 </head>
 
 <body>
-    <div class="caixa" style="flex-wrap: wrap; display: flex; justify-content: space-around;">
-        <div class="card">
-            <h1>Sensor DHT 11 - Umidade</h1>
-            <section style="width:40vw">
-                <canvas id="dht11Umidade"></canvas>
-            </section>
-        </div>
-        <div class="card">
-            <h1>Sensor DHT 11 - Temperatura</h1>
-            <section style="width: 40vw">
-                <canvas id="dht11Temperatura"></canvas>
-            </section>
-        </div>
-        <div class="card">
-            <h1>Sensor Luminosidade</h1>
-            <section style="width: 40vw">
-                <canvas id="luminosidade"></canvas>
-            </section>
-        </div>
-        <div class="card">
-            <h1>Sensor LM 35 - Temperatura</h1>
-            <section style="width: 40vw;">
-                <canvas id="lm35Temperatura"></canvas>
-            </section>
-        </div>
-        <div class="card">
-            <h1>Sensor Chave</h1>
-            <section style="width: 40vw;">
-                <canvas id="chave"></canvas>
-            </section>
-        </div>
+    <div>
+        <h1>Sensor DHT 11 - Umidade</h1>
+        <section style="width:100%">
+            <canvas id="dht11Umidade"></canvas>
+        </section>
+        <h1>Sensor DHT 11 - Temperatura</h1>
+        <section style="width: 100%;">
+            <canvas id="dht11Temperatura"></canvas>
+        </section>
+        <h1>Sensor Luminosidade</h1>
+        <section style="width: 100%;">
+            <canvas id="luminosidade"></canvas>
+        </section>
+        <h1>Sensor LM 35 - Temperatura</h1>
+        <section style="width: 100%;">
+            <canvas id="lm35Temperatura"></canvas>
+        </section>
+        <h1>Sensor Chave</h1>
+        <section style="width: 100%;">
+            <canvas id="chave"></canvas>
+        </section>
     </div>
 
     <script>
@@ -133,7 +107,7 @@
                         yAxes: [{
                             scaleLabel: {
                                 display: true,
-                                labelString: 'Temperatura'
+                                labelString: 'Luminosidade'
                             },
                             ticks: {
                                 beginAtZero: true
@@ -198,8 +172,8 @@
                     datasets: [{
                         label: 'Temperatura',
                         type: 'line',
-                        borderColor: ['red'],
-                        backgroundColor: ['red']
+                        borderColor: ['#ffd902'],
+                        backgroundColor: ['#ffe135']
                     }]
                 },
                 options: {
@@ -238,8 +212,8 @@
                     datasets: [{
                         label: 'Chave',
                         type: 'line',
-                        borderColor: ['green'],
-                        backgroundColor: ['green']
+                        borderColor: ['#ffd902'],
+                        backgroundColor: ['#ffe135']
                     }]
                 },
                 options: {
@@ -269,10 +243,8 @@
 
         var paginacao = {};
         var tempo = {};
-        // Função chamada a todo segundo para atualizar os gráficos 
         function obterDados(grafico, endpoint) {
             var http = new XMLHttpRequest();
-            //Abre uma conexão com o server e manda um GET request para o endpoint
             http.open('GET', 'http://localhost:3000/sensores/' + endpoint, false);
             http.send(null);
             var valores = JSON.parse(http.responseText);
@@ -293,14 +265,12 @@
                     grafico.data.datasets[0].data.shift();
                 }
 
-                // envia os dados para o gráfico
                 grafico.data.labels.push(tempo[endpoint]++);
                 grafico.data.datasets[0].data.push(parseFloat(valor));
                 grafico.update();
             })
         }
 
-        // frequência de captura de dados
         setInterval(() => {
             obterDados(dht11Umidade, 'dht11/umidade');
             obterDados(dht11Temperatura, 'dht11/temperatura');
