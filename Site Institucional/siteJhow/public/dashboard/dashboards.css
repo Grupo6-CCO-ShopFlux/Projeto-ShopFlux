@@ -125,6 +125,12 @@ body {
   height: 100vh;
 }
 
+.graph {
+  width: 80%;
+  margin: auto;
+  padding-top: 10px;
+}
+
 .dash_grafico {
   width: 75%;
   position: relative;
@@ -246,24 +252,13 @@ canvas #myChart {
   margin-top: 30px;
 }
 
-.graph {
+.tituloGraficos {
+  color: rgb(216, 216, 216);
   display: flex;
-  width: 76vh;
-  margin-left: 30px;
-  justify-content: flex-start;
-  position: absolute;
-  padding-top: 9px;
+  justify-content: center;
 }
 
-.graph2 {
-  margin-top: 250px;
-  display: flex;
-  width: 76vh;
-  margin-left: 30px;
-  justify-content: flex-start;
-  position: absolute;
-  padding-top: 45px;
-}
+
 
 .btn-chart {
   font-family: "Exo 2", sans-serif;

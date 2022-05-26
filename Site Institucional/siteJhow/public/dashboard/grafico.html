@@ -12,7 +12,8 @@
 
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="dashboards.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="text/javascript" src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"></script>
+
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link
@@ -20,8 +21,8 @@
         rel="stylesheet">
 </head>
 
-<body onload="validarSessao(), atualizarFeed()">
-
+<body >
+    <!-- onload="validarSessao(), atualizarFeed()" -->
     <div class="janela">
 
         <div class="header-left">
@@ -54,27 +55,38 @@
 
         </div>
 
-        <div class="graph">
-            <canvas id="canvas_grafico"></canvas>
+        <div class="dash">
+            <div class="btns-dash">
+                <!-- O gráfico é chamado de acordo com o id (fk_setor) do banco  -->
+                <button class="btn-chart btn-pink" onclick="obterDadosGrafico(1)">Diário</button>
+                <button class="btn-chart btn-white" onclick="obterDadosGrafico(2)">Semanal</button>
+                <button class="btn-chart btn-white" onclick="obterDadosGrafico(3)">Mensal</button>
+                <button class="btn-chart btn-white" onclick="obterDadosGrafico(4)">Anual</button>
+            </div>
+            <div>
+                <h3 class="tituloGraficos">
+                    <span id="tituloPeriodo">123</span>
+                </h3>
+            </div>
+            <div class="graph">
+                <canvas id="canvas_grafico"></canvas>
+            </div>
         </div>
-
-            <!-- <div class="dash_grafico">
-                <div class="titulo"><h1>SETORES</h1></div>
-                <div class="graph">
-                    <canvas id="setor1_grafico"></canvas>
-                    <canvas id="setor2_grafico"></canvas>
-                </div>
-                <div class="graph2">
-                    <canvas id="setor3_grafico"></canvas>
-                    <canvas id="setor4_grafico"></canvas>
-                </div>
-            </div> -->
 
         </div>
 
 </body>
 </html>
 <script>
+
+let proximaAtualizacao;
+
+window.onload = obterDadosGrafico(1);
+
+function alterarTitulo(idSetor) {
+        var tituloPeriodo = document.getElementById("tituloPeriodo")
+        tituloPeriodo.innerHTML = "Últimas medidas de Temperatura e Umidade do <span style='color: #e6005a'>Aquário " + idSetor + "</span>"
+}
 
 function obterDadosGrafico(idSetor) {
         alterarTitulo(idSetor)
@@ -107,18 +119,34 @@ function obterDadosGrafico(idSetor) {
             labels: [],
             datasets: [
                 {
-                    yAxisID: 'y-umidade',
-                    label: 'Umidade',
+                    yAxisID: 'y-setor1',
+                    label: 'Setor 1',
                     borderColor: '#32B9CD',
                     backgroundColor: '#32b9cd8f',
                     fill: true,
                     data: []
                 },
                 {
-                    yAxisID: 'y-temperatura',
-                    label: 'Temperatura',
+                    yAxisID: 'y-setor2',
+                    label: 'Setor 2',
                     borderColor: '#FFF',
                     backgroundColor: '#32b9cd8f',
+                    fill: true,
+                    data: []
+                },
+                {
+                    yAxisID: 'y-setor3',
+                    label: 'Setor 3',
+                    borderColor: '#FFF',
+                    backgroundColor: '#b9cf8f',
+                    fill: true,
+                    data: []
+                },
+                {
+                    yAxisID: 'y-setor4',
+                    label: 'Setor 4',
+                    borderColor: '#FFF',
+                    backgroundColor: '#32b97f',
                     fill: true,
                     data: []
                 }
@@ -128,7 +156,10 @@ function obterDadosGrafico(idSetor) {
         for (i = 0; i < resposta.length; i++) {
             var registro = resposta[i];
             dados.labels.push(registro.momento_grafico);
-            dados.datasets[0].data.push(registro.qtdDisparos);
+            dados.datasets[0].data.push(registro.setor1);
+            dados.datasets[1].data.push(registro.setor2);
+            dados.datasets[2].data.push(registro.setor3);
+            dados.datasets[3].data.push(registro.setor4);
         }
 
         console.log(JSON.stringify(dados));
@@ -153,7 +184,7 @@ function obterDadosGrafico(idSetor) {
                         id: 'y-setor1',
                         ticks: {
                             beginAtZero: true,
-                            max: 100,
+                            max: 40000,
                             min: 0
                         }
                     }, {
@@ -163,7 +194,7 @@ function obterDadosGrafico(idSetor) {
                         id: 'y-setor2',
                         ticks: {
                             beginAtZero: true,
-                            max: 100,
+                            max: 40000,
                             min: 0
                         }, 
 
@@ -174,7 +205,7 @@ function obterDadosGrafico(idSetor) {
                         id: 'y-setor3',
                         ticks: {
                             beginAtZero: true,
-                            max: 100,
+                            max: 40000,
                             min: 0
                         }, 
 
@@ -188,7 +219,7 @@ function obterDadosGrafico(idSetor) {
                         id: 'y-setor4',
                         ticks: {
                             beginAtZero: true,
-                            max: 100,
+                            max: 40000,
                             min: 0
                         }, 
                     }],
@@ -212,8 +243,17 @@ function obterDadosGrafico(idSetor) {
             dados.labels.shift(); // apagar o primeiro
             dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
             
-            dados.datasets[0].data.shift();  // apagar o primeiro de umidade
-            dados.datasets[0].data.push(novoRegistro[0].qtdDisparos); // incluir uma nova medida de umidade
+            dados.datasets[0].data.shift();  
+            dados.datasets[0].data.push(novoRegistro[0].setor1); 
+
+            dados.datasets[1].data.shift();  
+            dados.datasets[1].data.push(novoRegistro[0].setor2);
+
+            dados.datasets[2].data.shift();  
+            dados.datasets[2].data.push(novoRegistro[0].setor3);
+
+            dados.datasets[3].data.shift();  
+            dados.datasets[3].data.push(novoRegistro[0].setor4);
 
             window.grafico_linha.update();
 
