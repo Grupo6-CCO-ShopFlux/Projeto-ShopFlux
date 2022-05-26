@@ -4,11 +4,28 @@ function buscarUltimasMedidas(req, res) {
 
     const limite_linhas = 7;
 
-    var idSetor = req.params.idSetor;
+    var idGrafico = req.params.idGrafico;
+    if(idGrafico == 'tempo real') {
+        var tipoGrafico = idGrafico;
+        idGrafico = 1;
+    } else if(idGrafico == 'diario') {
+        var tipoGrafico = idGrafico;
+        idGrafico = 1;
+    }  else if(idGrafico == 'semanal') {
+        var tipoGrafico = idGrafico;
+        idGrafico = 1;
+    } else if(idGrafico == 'mensal') {
+        var tipoGrafico = idGrafico;
+        idGrafico = 1;
+    } else if(idGrafico == 'anual') {
+        var tipoGrafico = idGrafico;
+        idGrafico = 1;
+    }
+    
 
     console.log(`Recuperando as ultimas ${limite_linhas} medidas`);
 
-    medidaModel.buscarUltimasMedidas(idSetor, limite_linhas).then(function (resultado) {
+    medidaModel.buscarUltimasMedidas(idGrafico, limite_linhas, tipoGrafico).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -24,11 +41,27 @@ function buscarUltimasMedidas(req, res) {
 
 function buscarMedidasEmTempoReal(req, res) {
 
-    var idSetor = req.params.idSetor;
+    var idGrafico = req.params.idGrafico;
+    if(idGrafico == 'tempo real') {
+        var tipoGrafico = idGrafico;
+        idGrafico = 1;
+    } else if(idGrafico == 'diario') {
+        var tipoGrafico = idGrafico;
+        idGrafico = 1;
+    } else if(idGrafico == 'semanal') {
+        var tipoGrafico = idGrafico;
+        idGrafico = 1;
+    } else if(idGrafico == 'mensal') {
+        var tipoGrafico = idGrafico;
+        idGrafico = 1;
+    } else if(idGrafico == 'anual') {
+        var tipoGrafico = idGrafico;
+        idGrafico = 1;
+    }
 
     console.log(`Recuperando medidas em tempo real`);
 
-    medidaModel.buscarMedidasEmTempoReal(idSetor).then(function (resultado) {
+    medidaModel.buscarMedidasEmTempoReal(idGrafico, tipoGrafico).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {

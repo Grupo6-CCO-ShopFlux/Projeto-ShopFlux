@@ -57,11 +57,12 @@
 
         <div class="dash">
             <div class="btns-dash">
-                <!-- O gráfico é chamado de acordo com o id (fk_setor) do banco  -->
-                <button class="btn-chart btn-pink" onclick="obterDadosGrafico(1)">Diário</button>
-                <button class="btn-chart btn-white" onclick="obterDadosGrafico(2)">Semanal</button>
-                <button class="btn-chart btn-white" onclick="obterDadosGrafico(3)">Mensal</button>
-                <button class="btn-chart btn-white" onclick="obterDadosGrafico(4)">Anual</button>
+                <!-- O gráfico é chamado de acordo com o id (fkGrafico) do banco  -->
+                <button class="btn-chart btn-pink" onclick="obterDadosGrafico('tempo real')">Tempo Real</button>
+                <button class="btn-chart btn-pink" onclick="obterDadosGraficoDiario('diario')">Diário</button>
+                <button class="btn-chart btn-white" onclick="obterDadosGraficoSemanal('semanal')">Semanal</button>
+                <button class="btn-chart btn-white" onclick="obterDadosGraficoMensal('mensal')">Mensal</button>
+                <button class="btn-chart btn-white" onclick="obterDadosGraficoAnual('anual')">Anual</button>
             </div>
             <div>
                 <h3 class="tituloGraficos">
@@ -83,25 +84,25 @@ let proximaAtualizacao;
 
 window.onload = obterDadosGrafico(1);
 
-function alterarTitulo(idSetor) {
+function alterarTitulo(idGrafico) {
         var tituloPeriodo = document.getElementById("tituloPeriodo")
-        tituloPeriodo.innerHTML = "Últimas medidas de Temperatura e Umidade do <span style='color: #e6005a'>Aquário " + idSetor + "</span>"
+        tituloPeriodo.innerHTML = "Últimas medidas de Temperatura e Umidade do <span style='color: #e6005a'>Aquário " + idGrafico + "</span>"
 }
 
-function obterDadosGrafico(idSetor) {
-        alterarTitulo(idSetor)
+function obterDadosGrafico(idGrafico) {
+        alterarTitulo(idGrafico)
 
         if (proximaAtualizacao != undefined) {
             clearTimeout(proximaAtualizacao);
         }
 
-        fetch(`/medidas/ultimas/${idSetor}`, { cache: 'no-store' }).then(function (response) {
+        fetch(`/medidas/ultimas/${idGrafico}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                     resposta.reverse();
 
-                    plotarGrafico(resposta, idSetor);
+                    plotarGrafico(resposta, idGrafico);
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
@@ -112,7 +113,55 @@ function obterDadosGrafico(idSetor) {
             });
     }
 
-    function plotarGrafico(resposta, idSetor) {
+    function obterDadosGraficoDiario(idGrafico) {
+        alterarTitulo(idGrafico)
+
+        if (proximaAtualizacao != undefined) {
+            clearTimeout(proximaAtualizacao);
+        }
+
+        fetch(`/medidas/ultimas/${idGrafico}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+
+                    plotarGraficoDiario(resposta, idGrafico);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
+    function obterDadosGraficoSemanal(idGrafico) {
+        alterarTitulo(idGrafico)
+
+        if (proximaAtualizacao != undefined) {
+            clearTimeout(proximaAtualizacao);
+        }
+
+        fetch(`/medidas/ultimas/${idGrafico}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+
+                    plotarGraficoSemanal(resposta, idGrafico);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
+    function plotarGrafico(resposta, idGrafico) {
         console.log('iniciando plotagem do gráfico...');
 
         var dados = {
@@ -227,12 +276,248 @@ function obterDadosGrafico(idSetor) {
             }
         });
 
-        setTimeout(() => atualizarGrafico(idSetor, dados), 2000);
+        setTimeout(() => atualizarGrafico(idGrafico, dados), 2000);
     }
 
-    function atualizarGrafico(idSetor, dados) {
+    function plotarGraficoDiario(resposta, idGrafico) {
+        console.log('iniciando plotagem do gráfico...');
 
-            fetch(`/medidas/tempo-real/${idSetor}`, { cache: 'no-store' }).then(function (response) {
+        var dados = {
+            labels: [],
+            datasets: [
+                {
+                    yAxisID: 'y-setor1',
+                    label: 'Setor 1',
+                    borderColor: '#32B9CD',
+                    backgroundColor: '#32b9cd8f',
+                    fill: true,
+                    data: []
+                },
+                {
+                    yAxisID: 'y-setor2',
+                    label: 'Setor 2',
+                    borderColor: '#FFF',
+                    backgroundColor: '#32b9cd8f',
+                    fill: true,
+                    data: []
+                },
+                {
+                    yAxisID: 'y-setor3',
+                    label: 'Setor 3',
+                    borderColor: '#FFF',
+                    backgroundColor: '#b9cf8f',
+                    fill: true,
+                    data: []
+                },
+                {
+                    yAxisID: 'y-setor4',
+                    label: 'Setor 4',
+                    borderColor: '#FFF',
+                    backgroundColor: '#32b97f',
+                    fill: true,
+                    data: []
+                }
+            ]
+        };
+
+        for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+            dados.labels.push(registro.momento_grafico);
+            dados.datasets[0].data.push(registro.setor1);
+            dados.datasets[1].data.push(registro.setor2);
+            dados.datasets[2].data.push(registro.setor3);
+            dados.datasets[3].data.push(registro.setor4);
+        }
+
+        console.log(JSON.stringify(dados));
+
+        var ctx = canvas_grafico.getContext('2d');
+        window.grafico_linha = Chart.Line(ctx, {
+            data: dados,
+            options: {
+                responsive: true,
+                animation: { duration: 500 },
+                hoverMode: 'index',
+                stacked: false,
+                title: {
+                    display: false,
+                    text: 'Dados capturados'
+                },
+                scales: {
+                    yAxes: [{
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        id: 'y-setor1',
+                        ticks: {
+                            beginAtZero: true,
+                            max: 40000,
+                            min: 0
+                        }
+                    }, {
+                        type: 'linear',
+                        display: false,
+                        position: 'right',
+                        id: 'y-setor2',
+                        ticks: {
+                            beginAtZero: true,
+                            max: 40000,
+                            min: 0
+                        }, 
+
+                        }, {
+                        type: 'linear',
+                        display: false,
+                        position: 'right',
+                        id: 'y-setor3',
+                        ticks: {
+                            beginAtZero: true,
+                            max: 40000,
+                            min: 0
+                        }, 
+
+                        gridLines: {
+                            drawOnChartArea: false,
+                        },
+                    }, {
+                        type: 'linear',
+                        display: false,
+                        position: 'right',
+                        id: 'y-setor4',
+                        ticks: {
+                            beginAtZero: true,
+                            max: 40000,
+                            min: 0
+                        }, 
+                    }],
+                }
+            }
+        });
+
+        // setTimeout(() => atualizarGrafico(idGrafico, dados), 2000);
+    }
+
+    function plotarGraficoSemanal(resposta, idGrafico) {
+        console.log('iniciando plotagem do gráfico...');
+
+        var dados = {
+            labels: [],
+            datasets: [
+                {
+                    yAxisID: 'y-setor1',
+                    label: 'Setor 1',
+                    borderColor: '#32B9CD',
+                    backgroundColor: '#32b9cd8f',
+                    fill: true,
+                    data: []
+                },
+                {
+                    yAxisID: 'y-setor2',
+                    label: 'Setor 2',
+                    borderColor: '#FFF',
+                    backgroundColor: '#32b9cd8f',
+                    fill: true,
+                    data: []
+                },
+                {
+                    yAxisID: 'y-setor3',
+                    label: 'Setor 3',
+                    borderColor: '#FFF',
+                    backgroundColor: '#b9cf8f',
+                    fill: true,
+                    data: []
+                },
+                {
+                    yAxisID: 'y-setor4',
+                    label: 'Setor 4',
+                    borderColor: '#FFF',
+                    backgroundColor: '#32b97f',
+                    fill: true,
+                    data: []
+                }
+            ]
+        };
+
+        for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+            dados.labels.push(registro.momento_grafico);
+            dados.datasets[0].data.push(registro.setor1);
+            dados.datasets[1].data.push(registro.setor2);
+            dados.datasets[2].data.push(registro.setor3);
+            dados.datasets[3].data.push(registro.setor4);
+        }
+
+        console.log(JSON.stringify(dados));
+
+        var ctx = canvas_grafico.getContext('2d');
+        window.grafico_linha = Chart.Line(ctx, {
+            data: dados,
+            options: {
+                responsive: true,
+                animation: { duration: 500 },
+                hoverMode: 'index',
+                stacked: false,
+                title: {
+                    display: false,
+                    text: 'Dados capturados'
+                },
+                scales: {
+                    yAxes: [{
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        id: 'y-setor1',
+                        ticks: {
+                            beginAtZero: true,
+                            max: 40000,
+                            min: 0
+                        }
+                    }, {
+                        type: 'linear',
+                        display: false,
+                        position: 'right',
+                        id: 'y-setor2',
+                        ticks: {
+                            beginAtZero: true,
+                            max: 40000,
+                            min: 0
+                        }, 
+
+                        }, {
+                        type: 'linear',
+                        display: false,
+                        position: 'right',
+                        id: 'y-setor3',
+                        ticks: {
+                            beginAtZero: true,
+                            max: 40000,
+                            min: 0
+                        }, 
+
+                        gridLines: {
+                            drawOnChartArea: false,
+                        },
+                    }, {
+                        type: 'linear',
+                        display: false,
+                        position: 'right',
+                        id: 'y-setor4',
+                        ticks: {
+                            beginAtZero: true,
+                            max: 40000,
+                            min: 0
+                        }, 
+                    }],
+                }
+            }
+        });
+
+        // setTimeout(() => atualizarGrafico(idGrafico, dados), 2000);
+    }
+
+    function atualizarGrafico(idGrafico, dados) {
+
+            fetch(`/medidas/tempo-real/${idGrafico}`, { cache: 'no-store' }).then(function (response) {
                 if (response.ok) {
                     response.json().then(function (novoRegistro) {
 
@@ -258,12 +543,12 @@ function obterDadosGrafico(idSetor) {
             window.grafico_linha.update();
 
             // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-            proximaAtualizacao = setTimeout(() => atualizarGrafico(idSetor, dados), 2000);
+            proximaAtualizacao = setTimeout(() => atualizarGrafico(idGrafico, dados), 2000);
         });
     } else {
         console.error('Nenhum dado encontrado ou erro na API');
         // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-        proximaAtualizacao = setTimeout(() => atualizarGrafico(idSetor, dados), 2000);
+        proximaAtualizacao = setTimeout(() => atualizarGrafico(idGrafico, dados), 2000);
     }
 })
     .catch(function (error) {
@@ -272,246 +557,6 @@ function obterDadosGrafico(idSetor) {
 
 }
 
-// const labels_hora = [
-//     '10h',
-//     '11h',
-//     '12h',
-//     '13h',
-//     '14h',
-//     '15h',
-//     '16h',
-//     '17h',
-//     '18h',
-//     '19h',
-//     '20h',
-//     '21h',
-//     '22h'
-// ];
 
-// const data_hora = {
-//     labels: labels_hora,
-//     datasets: [{
-//         label: 'Setor 1',
-//         backgroundColor: 'rgb(255, 99, 132)',
-//         borderColor: 'rgb(255, 99, 132)',
-//         data: [0, 12000, 13000, 17000, 21000, 15000, 12000, 13000, 18000, 15000, 10000, 12000, 8000],
-//     },
-//     {
-//     label: 'Setor 2',
-//     backgroundColor: '#e6005a',
-//     borderColor: '#e6005a',
-//     data: [0, 15000, 20000, 23000, 24000, 22000, 22000, 20000, 27000, 26000, 23000, 20000, 19000],
-//     },
-//     {
-//     label: 'Setor 3',
-//     backgroundColor: 'white',
-//     borderColor: 'white',
-//     data: [0, 25000, 29000, 28000, 30000, 29000, 31000, 32000, 35000, 33000, 30000, 27000, 25000],
-//     },
-//     {
-//     label: 'Setor 4',
-//     backgroundColor: '#AD4748',
-//     borderColor: '#AD4748',
-//     data: [0, 10000, 11000, 8000, 7000, 7500, 8000, 9000, 10000, 8000, 7000, 5000, 3500],
-//     }]
-// };
-
-// const config_hora = {
-//     type: 'line',
-//     data: data_hora,
-//     options: {
-//         plugins: {
-//             title: {
-//                 display: true,
-//                 position: 'top',
-//                 text: 'Fluxo Diário',
-//                 fontSize: 14
-//             }
-//         }
-//     }
-// };
-
-// const myChart_hora = new Chart(
-//     document.getElementById('setor1_grafico'),
-//     config_hora
-// );
-
-// const labels_dias = [
-//     'Domingo',
-//     'Segunda',
-//     'Terça',
-//     'Quarta',
-//     'Quinta',
-//     'Sexta',
-//     'Sábado'
-// ];
-
-// const data_dias = {
-//     labels: labels_dias,
-//     datasets: [{
-//         label: 'Setor 1',
-//         backgroundColor: 'rgb(255, 99, 132)',
-//         borderColor: 'rgb(255, 99, 132)',
-//         data: [167000, 133000, 138000, 140000, 148000, 155000, 162000],
-//     },
-//     {
-//     label: 'Setor 2',
-//     backgroundColor: '#e6005a',
-//     borderColor: '#e6005a',
-//     data: [262000, 239000, 240000, 247000, 250000, 258000, 260000],
-//     },
-//     {
-//     label: 'Setor 3',
-//     backgroundColor: 'white',
-//     borderColor: 'white',
-//     data: [326000, 295000, 298000, 305000, 314000, 320000, 324000],
-//     },
-//     {
-//     label: 'Setor 4',
-//     backgroundColor: '#AD4748',
-//     borderColor: '#AD4748',
-//     data: [94500, 80000, 83000, 88000, 89000, 91000, 93000],
-//     }]
-// };
-
-// const config_dias = {
-//     type: 'bar',
-//     data: data_dias,
-//     options: {
-//         plugins: {
-//             title: {
-//                 display: true,
-//                 position: 'top',
-//                 text: 'Fluxo Semanal',
-//                 fontSize: 14
-//             }
-//         }
-//     }
-// };
-
-// const myChart_dias = new Chart(
-//     document.getElementById('setor2_grafico'),
-//     config_dias
-// );
-
-// const labels_mes = [
-//     'Janeiro',
-//     'Fevereiro',
-//     'Março',
-//     'Abril',
-//     'Maio',
-//     'Junho',
-//     'Julho',
-//     'Agosto',
-//     'Setembro',
-//     'Outubro',
-//     'Novembro',
-//     'Dezembro'
-// ];
-
-// const data_mes = {
-//     labels: labels_mes,
-//     datasets: [{
-//         label: 'Setor 1',
-//         backgroundColor: 'rgb(255, 99, 132)',
-//         borderColor: 'rgb(255, 99, 132)',
-//         data: [1040000, 1035000, 1030000, 1026000, 1022000, 1028000, 1025000, 1032000, 1030000, 1036000, 1040000, 1043000],
-//     },
-//     {
-//     label: 'Setor 2',
-//     backgroundColor: '#e6005a',
-//     borderColor: '#e6005a',
-//     data: [1750000, 1748000, 1740000, 1700000, 1650000, 1680000, 1690000, 1650000, 1680000, 1700000, 1725000, 1756000],
-//     },
-//     {
-//     label: 'Setor 3',
-//     backgroundColor: 'white',
-//     borderColor: 'white',
-//     data: [2150000, 2110000, 2004000, 2010000, 2000500, 2008000, 2000000, 2005000, 2015000, 2028000, 2030000, 2182000],
-//     },
-//     {
-//     label: 'Setor 4',
-//     backgroundColor: '#AD4748',
-//     borderColor: '#AD4748',
-//     data: [528000, 521000, 518000, 514000, 507000, 505000, 508000, 511000, 518000, 520000, 528000, 529000],
-//     }]
-// };
-
-// const config_mes = {
-//     type: 'bar',
-//     data: data_mes,
-//     options: {
-//         plugins: {
-//             title: {
-//                 display: true,
-//                 position: 'top',
-//                 text: 'Fluxo Mensal',
-//                 fontSize: 14
-//             }
-//         }
-//     }
-// };
-
-// const myChart_mes = new Chart(
-//     document.getElementById('setor3_grafico'),
-//     config_mes
-// );
-
-// const labels_ano = [
-//     '2017',
-//     '2018',
-//     '2019',
-//     '2020',
-//     '2021',
-//     '2022'
-// ];
-
-// const data_ano = {
-//     labels: labels_ano,
-//     datasets: [{
-//         label: 'Setor 1',
-//         backgroundColor: 'rgb(255, 99, 132)',
-//         borderColor: 'rgb(255, 99, 132)',
-//         data: [12360000, 15000000, 18000000, 9000000, 11000000, 14000000],
-//     },
-//     {
-//     label: 'Setor 2',
-//     backgroundColor: '#e6005a',
-//     borderColor: '#e6005a',
-//     data: [18400000, 20000000, 23000000, 15000000, 17000000, 20000000],
-//     },
-//     {
-//     label: 'Setor 3',
-//     backgroundColor: 'white',
-//     borderColor: 'white',
-//     data: [22000000, 24000000, 26000000, 17000000, 19000000, 22000000],
-//     },
-//     {
-//     label: 'Setor 4',
-//     backgroundColor: '#AD4748',
-//     borderColor: '#AD4748',
-//     data: [6600000, 8200000, 11000000, 5000000, 6200000, 8100000],
-//     }]
-// };
-
-// const config_ano = {
-//     type: 'bar',
-//     data: data_ano,
-//     options: {
-//         plugins: {
-//             title: {
-//                 display: true,
-//                 position: 'top',
-//                 text: 'Fluxo Anual',
-//                 fontSize: 14
-//             }
-//         }
-//     }
-// };
-
-// const myChart_ano = new Chart(
-//     document.getElementById('setor4_grafico'),
-//     config_ano
-// );
 
 </script>
