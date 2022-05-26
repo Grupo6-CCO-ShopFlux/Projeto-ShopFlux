@@ -781,7 +781,7 @@ function obterDadosGrafico(idGrafico) {
 
         for (i = 0; i < resposta.length; i++) {
             var registro = resposta[i];
-            dados.labels.push(registro.momento_grafico);
+            // dados.labels.push(registro.momento_grafico);
             dados.datasets[0].data.push(registro.setor1);
             dados.datasets[1].data.push(registro.setor2);
             dados.datasets[2].data.push(registro.setor3);
