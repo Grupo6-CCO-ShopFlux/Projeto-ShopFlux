@@ -59,18 +59,22 @@
             <div class="btns-dash">
                 <!-- O gráfico é chamado de acordo com o id (fkGrafico) do banco  -->
                 <button class="btn-chart btn-pink" onclick="obterDadosGrafico('tempo real')">Tempo Real</button>
-                <button class="btn-chart btn-pink" onclick="obterDadosGraficoDiario('diario')">Diário</button>
+                <button class="btn-chart btn-pink" onclick="obterDadosGraficoDiario('diário')">Diário</button>
                 <button class="btn-chart btn-white" onclick="obterDadosGraficoSemanal('semanal')">Semanal</button>
                 <button class="btn-chart btn-white" onclick="obterDadosGraficoMensal('mensal')">Mensal</button>
                 <button class="btn-chart btn-white" onclick="obterDadosGraficoAnual('anual')">Anual</button>
             </div>
             <div>
                 <h3 class="tituloGraficos">
-                    <span id="tituloPeriodo">123</span>
+                    <span id="tituloPeriodo">Selecione um tipo de gráfico</span>
                 </h3>
             </div>
             <div class="graph">
                 <canvas id="canvas_grafico"></canvas>
+                <canvas id="canvas_graficoDiario"></canvas>
+                <canvas id="canvas_graficoSemanal"></canvas>
+                <canvas id="canvas_graficoMensal"></canvas>
+                <canvas id="canvas_graficoAnual"></canvas>
             </div>
         </div>
 
@@ -82,15 +86,23 @@
 
 let proximaAtualizacao;
 
-window.onload = obterDadosGrafico(1);
-
 function alterarTitulo(idGrafico) {
         var tituloPeriodo = document.getElementById("tituloPeriodo")
-        tituloPeriodo.innerHTML = "Últimas medidas de Temperatura e Umidade do <span style='color: #e6005a'>Aquário " + idGrafico + "</span>"
+        tituloPeriodo.innerHTML = "<span style='color: #FB6D6C'>Medidas do fluxo</span><span style='color: #AD4748'> " + idGrafico + "</span>"
 }
 
 function obterDadosGrafico(idGrafico) {
         alterarTitulo(idGrafico)
+        var canvas_grafico = document.getElementById("canvas_grafico");
+        var canvas_graficoDiario = document.getElementById("canvas_graficoDiario");
+        var canvas_graficoSemanal = document.getElementById("canvas_graficoSemanal");
+        var canvas_graficoMensal = document.getElementById("canvas_graficoMensal");
+        var canvas_graficoAnual = document.getElementById("canvas_graficoAnual");
+        canvas_grafico.style.display = "block";
+        canvas_graficoDiario.style.display = "none";
+        canvas_graficoSemanal.style.display = "none";
+        canvas_graficoMensal.style.display = "none";
+        canvas_graficoAnual.style.display = "none";
 
         if (proximaAtualizacao != undefined) {
             clearTimeout(proximaAtualizacao);
@@ -115,6 +127,16 @@ function obterDadosGrafico(idGrafico) {
 
     function obterDadosGraficoDiario(idGrafico) {
         alterarTitulo(idGrafico)
+        var canvas_grafico = document.getElementById("canvas_grafico");
+        var canvas_graficoDiario = document.getElementById("canvas_graficoDiario");
+        var canvas_graficoSemanal = document.getElementById("canvas_graficoSemanal");
+        var canvas_graficoMensal = document.getElementById("canvas_graficoMensal");
+        var canvas_graficoAnual = document.getElementById("canvas_graficoAnual");
+        canvas_grafico.style.display = "none";
+        canvas_graficoDiario.style.display = "block";
+        canvas_graficoSemanal.style.display = "none";
+        canvas_graficoMensal.style.display = "none";
+        canvas_graficoAnual.style.display = "none";
 
         if (proximaAtualizacao != undefined) {
             clearTimeout(proximaAtualizacao);
@@ -139,6 +161,16 @@ function obterDadosGrafico(idGrafico) {
 
     function obterDadosGraficoSemanal(idGrafico) {
         alterarTitulo(idGrafico)
+        var canvas_grafico = document.getElementById("canvas_grafico");
+        var canvas_graficoDiario = document.getElementById("canvas_graficoDiario");
+        var canvas_graficoSemanal = document.getElementById("canvas_graficoSemanal");
+        var canvas_graficoMensal = document.getElementById("canvas_graficoMensal");
+        var canvas_graficoAnual = document.getElementById("canvas_graficoAnual");
+        canvas_grafico.style.display = "none";
+        canvas_graficoDiario.style.display = "none";
+        canvas_graficoSemanal.style.display = "block";
+        canvas_graficoMensal.style.display = "none";
+        canvas_graficoAnual.style.display = "none";
 
         if (proximaAtualizacao != undefined) {
             clearTimeout(proximaAtualizacao);
@@ -163,6 +195,16 @@ function obterDadosGrafico(idGrafico) {
 
     function obterDadosGraficoMensal(idGrafico) {
         alterarTitulo(idGrafico)
+        var canvas_grafico = document.getElementById("canvas_grafico");
+        var canvas_graficoDiario = document.getElementById("canvas_graficoDiario");
+        var canvas_graficoSemanal = document.getElementById("canvas_graficoSemanal");
+        var canvas_graficoMensal = document.getElementById("canvas_graficoMensal");
+        var canvas_graficoAnual = document.getElementById("canvas_graficoAnual");
+        canvas_grafico.style.display = "none";
+        canvas_graficoDiario.style.display = "none";
+        canvas_graficoSemanal.style.display = "none";
+        canvas_graficoMensal.style.display = "block";
+        canvas_graficoAnual.style.display = "none";
 
         if (proximaAtualizacao != undefined) {
             clearTimeout(proximaAtualizacao);
@@ -187,6 +229,16 @@ function obterDadosGrafico(idGrafico) {
 
     function obterDadosGraficoAnual(idGrafico) {
         alterarTitulo(idGrafico)
+        var canvas_grafico = document.getElementById("canvas_grafico");
+        var canvas_graficoDiario = document.getElementById("canvas_graficoDiario");
+        var canvas_graficoSemanal = document.getElementById("canvas_graficoSemanal");
+        var canvas_graficoMensal = document.getElementById("canvas_graficoMensal");
+        var canvas_graficoAnual = document.getElementById("canvas_graficoAnual");
+        canvas_grafico.style.display = "none";
+        canvas_graficoDiario.style.display = "none";
+        canvas_graficoSemanal.style.display = "none";
+        canvas_graficoMensal.style.display = "none";
+        canvas_graficoAnual.style.display = "block";
 
         if (proximaAtualizacao != undefined) {
             clearTimeout(proximaAtualizacao);
@@ -379,8 +431,8 @@ function obterDadosGrafico(idGrafico) {
 
         console.log(JSON.stringify(dados));
 
-        var ctx = canvas_grafico.getContext('2d');
-        window.grafico_linha = Chart.Line(ctx, {
+        var ctx = canvas_graficoDiario.getContext('2d');
+        window.grafico_linhaDiario = Chart.Line(ctx, {
             data: dados,
             options: {
                 responsive: true,
@@ -497,7 +549,7 @@ function obterDadosGrafico(idGrafico) {
 
         console.log(JSON.stringify(dados));
 
-        var ctx = canvas_grafico.getContext('2d');
+        var ctx = canvas_graficoSemanal.getContext('2d');
         window.grafico_barra = new  Chart(ctx,
         {
             type: 'bar',
@@ -618,7 +670,7 @@ function obterDadosGrafico(idGrafico) {
 
         console.log(JSON.stringify(dados));
 
-        var ctx = canvas_grafico.getContext('2d');
+        var ctx = canvas_graficoMensal.getContext('2d');
         window.grafico_barra = new  Chart(ctx,
         {
             type: 'bar',
@@ -738,7 +790,7 @@ function obterDadosGrafico(idGrafico) {
 
         console.log(JSON.stringify(dados));
 
-        var ctx = canvas_grafico.getContext('2d');
+        var ctx = canvas_graficoAnual.getContext('2d');
         window.grafico_barra = new  Chart(ctx,
         {
             type: 'bar',
@@ -848,7 +900,5 @@ function obterDadosGrafico(idGrafico) {
     });
 
 }
-
-
 
 </script>

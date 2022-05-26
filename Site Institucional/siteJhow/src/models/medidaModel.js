@@ -31,7 +31,7 @@ function buscarUltimasMedidas(idGrafico, limite_linhas, tipoGrafico) {
             console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
             return
         }
-    } else if(tipoGrafico == 'diario') {
+    } else if(tipoGrafico == 'diário') {
         if (process.env.AMBIENTE_PROCESSO == "producao") {
             instrucaoSql = `select top ${limite_linhas}
                             chave as setor1, 
@@ -174,7 +174,7 @@ function buscarMedidasEmTempoReal(idGrafico, tipoGrafico) {
                 console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
                 return
             }
-        } else if(tipoGrafico == 'diario') {
+        } else if(tipoGrafico == 'diário') {
             if (process.env.AMBIENTE_PROCESSO == "producao") {       
                 instrucaoSql = `select top 1
                                 chave as setor1, 

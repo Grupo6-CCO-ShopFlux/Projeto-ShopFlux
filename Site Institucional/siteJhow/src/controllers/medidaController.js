@@ -8,7 +8,7 @@ function buscarUltimasMedidas(req, res) {
     if(idGrafico == 'tempo real') {
         var tipoGrafico = idGrafico;
         idGrafico = 1;
-    } else if(idGrafico == 'diario') {
+    } else if(idGrafico == 'diário') {
         var tipoGrafico = idGrafico;
         idGrafico = 1;
     }  else if(idGrafico == 'semanal') {
@@ -45,7 +45,7 @@ function buscarMedidasEmTempoReal(req, res) {
     if(idGrafico == 'tempo real') {
         var tipoGrafico = idGrafico;
         idGrafico = 1;
-    } else if(idGrafico == 'diario') {
+    } else if(idGrafico == 'diário') {
         var tipoGrafico = idGrafico;
         idGrafico = 1;
     } else if(idGrafico == 'semanal') {

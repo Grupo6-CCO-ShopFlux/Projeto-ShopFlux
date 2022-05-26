@@ -253,7 +253,7 @@ canvas #myChart {
 }
 
 .tituloGraficos {
-  color: rgb(216, 216, 216);
+  color: #AD4748;
   display: flex;
   justify-content: center;
 }
