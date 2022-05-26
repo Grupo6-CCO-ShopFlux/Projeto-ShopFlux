@@ -33,6 +33,14 @@ create table medida (
 	FOREIGN KEY (fkGrafico) REFERENCES tipoGrafico(idGrafico)
 );
 
+insert into tipoGrafico values
+	(1, 'Tempo real');
+    
+insert into medida values 
+	(null, 0, 0, 0, 0, 1, now(), 1),
+    (null, 0, 0, 0, 0, 0, now(), 1),
+    (null, 0, 0, 0, 0, 1, now(), 1);
+
 
 /* para sql server - remoto - produção */
 CREATE TABLE usuario (
