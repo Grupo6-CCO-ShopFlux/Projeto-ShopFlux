@@ -161,6 +161,54 @@ function obterDadosGrafico(idGrafico) {
             });
     }
 
+    function obterDadosGraficoMensal(idGrafico) {
+        alterarTitulo(idGrafico)
+
+        if (proximaAtualizacao != undefined) {
+            clearTimeout(proximaAtualizacao);
+        }
+
+        fetch(`/medidas/ultimas/${idGrafico}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+
+                    plotarGraficoMensal(resposta, idGrafico);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
+    function obterDadosGraficoAnual(idGrafico) {
+        alterarTitulo(idGrafico)
+
+        if (proximaAtualizacao != undefined) {
+            clearTimeout(proximaAtualizacao);
+        }
+
+        fetch(`/medidas/ultimas/${idGrafico}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+
+                    plotarGraficoAnual(resposta, idGrafico);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
     function plotarGrafico(resposta, idGrafico) {
         console.log('iniciando plotagem do gráfico...');
 
@@ -450,7 +498,9 @@ function obterDadosGrafico(idGrafico) {
         console.log(JSON.stringify(dados));
 
         var ctx = canvas_grafico.getContext('2d');
-        window.grafico_linha = Chart.Line(ctx, {
+        window.grafico_barra = new  Chart(ctx,
+        {
+            type: 'bar',
             data: dados,
             options: {
                 responsive: true,
@@ -510,7 +560,249 @@ function obterDadosGrafico(idGrafico) {
                     }],
                 }
             }
-        });
+        }
+        );
+
+        // setTimeout(() => atualizarGrafico(idGrafico, dados), 2000);
+    }
+
+    function plotarGraficoMensal(resposta, idGrafico) {
+        console.log('iniciando plotagem do gráfico...');
+
+        var dados = {
+            labels: [],
+            datasets: [
+                {
+                    yAxisID: 'y-setor1',
+                    label: 'Setor 1',
+                    borderColor: '#32B9CD',
+                    backgroundColor: '#32b9cd8f',
+                    fill: true,
+                    data: []
+                },
+                {
+                    yAxisID: 'y-setor2',
+                    label: 'Setor 2',
+                    borderColor: '#FFF',
+                    backgroundColor: '#32b9cd8f',
+                    fill: true,
+                    data: []
+                },
+                {
+                    yAxisID: 'y-setor3',
+                    label: 'Setor 3',
+                    borderColor: '#FFF',
+                    backgroundColor: '#b9cf8f',
+                    fill: true,
+                    data: []
+                },
+                {
+                    yAxisID: 'y-setor4',
+                    label: 'Setor 4',
+                    borderColor: '#FFF',
+                    backgroundColor: '#32b97f',
+                    fill: true,
+                    data: []
+                }
+            ]
+        };
+
+        for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+            dados.labels.push(registro.momento_grafico);
+            dados.datasets[0].data.push(registro.setor1);
+            dados.datasets[1].data.push(registro.setor2);
+            dados.datasets[2].data.push(registro.setor3);
+            dados.datasets[3].data.push(registro.setor4);
+        }
+
+        console.log(JSON.stringify(dados));
+
+        var ctx = canvas_grafico.getContext('2d');
+        window.grafico_barra = new  Chart(ctx,
+        {
+            type: 'bar',
+            data: dados,
+            options: {
+                responsive: true,
+                animation: { duration: 500 },
+                hoverMode: 'index',
+                stacked: false,
+                title: {
+                    display: false,
+                    text: 'Dados capturados'
+                },
+                scales: {
+                    yAxes: [{
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        id: 'y-setor1',
+                        ticks: {
+                            beginAtZero: true,
+                            max: 40000,
+                            min: 0
+                        }
+                    }, {
+                        type: 'linear',
+                        display: false,
+                        position: 'right',
+                        id: 'y-setor2',
+                        ticks: {
+                            beginAtZero: true,
+                            max: 40000,
+                            min: 0
+                        }, 
+
+                        }, {
+                        type: 'linear',
+                        display: false,
+                        position: 'right',
+                        id: 'y-setor3',
+                        ticks: {
+                            beginAtZero: true,
+                            max: 40000,
+                            min: 0
+                        }, 
+
+                        gridLines: {
+                            drawOnChartArea: false,
+                        },
+                    }, {
+                        type: 'linear',
+                        display: false,
+                        position: 'right',
+                        id: 'y-setor4',
+                        ticks: {
+                            beginAtZero: true,
+                            max: 40000,
+                            min: 0
+                        }, 
+                    }],
+                }
+            }
+        }
+        );
+        // setTimeout(() => atualizarGrafico(idGrafico, dados), 2000);
+    }
+
+    function plotarGraficoAnual(resposta, idGrafico) {
+        console.log('iniciando plotagem do gráfico...');
+
+        var dados = {
+            labels: [],
+            datasets: [
+                {
+                    yAxisID: 'y-setor1',
+                    label: 'Setor 1',
+                    borderColor: '#32B9CD',
+                    backgroundColor: '#32b9cd8f',
+                    fill: true,
+                    data: []
+                },
+                {
+                    yAxisID: 'y-setor2',
+                    label: 'Setor 2',
+                    borderColor: '#FFF',
+                    backgroundColor: '#32b9cd8f',
+                    fill: true,
+                    data: []
+                },
+                {
+                    yAxisID: 'y-setor3',
+                    label: 'Setor 3',
+                    borderColor: '#FFF',
+                    backgroundColor: '#b9cf8f',
+                    fill: true,
+                    data: []
+                },
+                {
+                    yAxisID: 'y-setor4',
+                    label: 'Setor 4',
+                    borderColor: '#FFF',
+                    backgroundColor: '#32b97f',
+                    fill: true,
+                    data: []
+                }
+            ]
+        };
+
+        for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+            dados.labels.push(registro.momento_grafico);
+            dados.datasets[0].data.push(registro.setor1);
+            dados.datasets[1].data.push(registro.setor2);
+            dados.datasets[2].data.push(registro.setor3);
+            dados.datasets[3].data.push(registro.setor4);
+        }
+
+        console.log(JSON.stringify(dados));
+
+        var ctx = canvas_grafico.getContext('2d');
+        window.grafico_barra = new  Chart(ctx,
+        {
+            type: 'bar',
+            data: dados,
+            options: {
+                responsive: true,
+                animation: { duration: 500 },
+                hoverMode: 'index',
+                stacked: false,
+                title: {
+                    display: false,
+                    text: 'Dados capturados'
+                },
+                scales: {
+                    yAxes: [{
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        id: 'y-setor1',
+                        ticks: {
+                            beginAtZero: true,
+                            max: 40000,
+                            min: 0
+                        }
+                    }, {
+                        type: 'linear',
+                        display: false,
+                        position: 'right',
+                        id: 'y-setor2',
+                        ticks: {
+                            beginAtZero: true,
+                            max: 40000,
+                            min: 0
+                        }, 
+
+                        }, {
+                        type: 'linear',
+                        display: false,
+                        position: 'right',
+                        id: 'y-setor3',
+                        ticks: {
+                            beginAtZero: true,
+                            max: 40000,
+                            min: 0
+                        }, 
+
+                        gridLines: {
+                            drawOnChartArea: false,
+                        },
+                    }, {
+                        type: 'linear',
+                        display: false,
+                        position: 'right',
+                        id: 'y-setor4',
+                        ticks: {
+                            beginAtZero: true,
+                            max: 40000,
+                            min: 0
+                        }, 
+                    }],
+                }
+            }
+        }
+        );
 
         // setTimeout(() => atualizarGrafico(idGrafico, dados), 2000);
     }
