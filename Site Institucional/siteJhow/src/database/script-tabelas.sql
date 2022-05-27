@@ -22,7 +22,7 @@ create table tipoGrafico (
 /* altere esta tabela de acordo com o que está em INSERT de sua API do arduino */
 
 create table medida (
-	id INT PRIMARY KEY AUTO_INCREMENT,
+	idMedida INT PRIMARY KEY AUTO_INCREMENT,
 	dht11_umidade DECIMAL,
 	dht11_temperatura DECIMAL,
 	luminosidade DECIMAL,

@@ -333,7 +333,7 @@ function obterDadosGrafico(idGrafico) {
                         id: 'y-setor1',
                         ticks: {
                             beginAtZero: true,
-                            max: 40000,
+                            max: 2,
                             min: 0
                         }
                     }, {
@@ -343,7 +343,7 @@ function obterDadosGrafico(idGrafico) {
                         id: 'y-setor2',
                         ticks: {
                             beginAtZero: true,
-                            max: 40000,
+                            max: 2,
                             min: 0
                         }, 
 
@@ -354,7 +354,7 @@ function obterDadosGrafico(idGrafico) {
                         id: 'y-setor3',
                         ticks: {
                             beginAtZero: true,
-                            max: 40000,
+                            max: 2,
                             min: 0
                         }, 
 
@@ -368,7 +368,7 @@ function obterDadosGrafico(idGrafico) {
                         id: 'y-setor4',
                         ticks: {
                             beginAtZero: true,
-                            max: 40000,
+                            max: 2,
                             min: 0
                         }, 
                     }],
@@ -383,7 +383,21 @@ function obterDadosGrafico(idGrafico) {
         console.log('iniciando plotagem do gráfico...');
 
         var dados = {
-            labels: [],
+            labels: [
+                '10h',
+                '11h',
+                '12h',
+                '13h',
+                '14h',
+                '15h',
+                '16h',
+                '17h',
+                '18h',
+                '19h',
+                '20h',
+                '21h',
+                '22h'
+            ],
             datasets: [
                 {
                     yAxisID: 'y-setor1',
@@ -422,7 +436,7 @@ function obterDadosGrafico(idGrafico) {
 
         for (i = 0; i < resposta.length; i++) {
             var registro = resposta[i];
-            dados.labels.push(registro.momento_grafico);
+            // dados.labels.push(registro.momento_grafico);
             dados.datasets[0].data.push(registro.setor1);
             dados.datasets[1].data.push(registro.setor2);
             dados.datasets[2].data.push(registro.setor3);
@@ -501,7 +515,15 @@ function obterDadosGrafico(idGrafico) {
         console.log('iniciando plotagem do gráfico...');
 
         var dados = {
-            labels: [],
+            labels: [
+                'Domingo',
+                'Segunda',
+                'Terça-feira',
+                'Quarta-feira',
+                'Quinta-feira',
+                'Sexta-feira',
+                'Sabádo'
+            ],
             datasets: [
                 {
                     yAxisID: 'y-setor1',
@@ -540,7 +562,7 @@ function obterDadosGrafico(idGrafico) {
 
         for (i = 0; i < resposta.length; i++) {
             var registro = resposta[i];
-            dados.labels.push(registro.momento_grafico);
+            // dados.labels.push(registro.momento_grafico);
             dados.datasets[0].data.push(registro.setor1);
             dados.datasets[1].data.push(registro.setor2);
             dados.datasets[2].data.push(registro.setor3);
@@ -622,7 +644,20 @@ function obterDadosGrafico(idGrafico) {
         console.log('iniciando plotagem do gráfico...');
 
         var dados = {
-            labels: [],
+            labels: [
+                'Janeiro',
+                'Fevereiro',
+                'Março',
+                'Abril',
+                'Maio',
+                'Junho',
+                'Julho',
+                'Agosto',
+                'Setembro',
+                'Outubro',
+                'Novembro',
+                'Dezembro'
+            ],
             datasets: [
                 {
                     yAxisID: 'y-setor1',
@@ -661,7 +696,7 @@ function obterDadosGrafico(idGrafico) {
 
         for (i = 0; i < resposta.length; i++) {
             var registro = resposta[i];
-            dados.labels.push(registro.momento_grafico);
+            // dados.labels.push(registro.momento_grafico);
             dados.datasets[0].data.push(registro.setor1);
             dados.datasets[1].data.push(registro.setor2);
             dados.datasets[2].data.push(registro.setor3);
