@@ -10,16 +10,16 @@ function buscarUltimasMedidas(req, res) {
         idGrafico = 1;
     } else if(idGrafico == 'diário') {
         var tipoGrafico = idGrafico;
-        idGrafico = 1;
+        idGrafico = 2;
     }  else if(idGrafico == 'semanal') {
         var tipoGrafico = idGrafico;
-        idGrafico = 1;
+        idGrafico = 3;
     } else if(idGrafico == 'mensal') {
         var tipoGrafico = idGrafico;
-        idGrafico = 1;
+        idGrafico = 4;
     } else if(idGrafico == 'anual') {
         var tipoGrafico = idGrafico;
-        idGrafico = 1;
+        idGrafico = 5;
     }
     
 
