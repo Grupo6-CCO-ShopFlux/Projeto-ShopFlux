@@ -339,8 +339,8 @@ function obterDadosGrafico(idGrafico) {
                 {
                     yAxisID: 'y-setor2',
                     label: 'Setor 2',
-                    borderColor: '#FFF',
-                    backgroundColor: '#FFF',
+                    borderColor: '#AE4848',
+                    backgroundColor: '#AE4848',
                     fill: true,
                     data: []
                 }
@@ -350,7 +350,7 @@ function obterDadosGrafico(idGrafico) {
         for (i = 0; i < resposta.length; i++) {
             var registro = resposta[i];
             dados.labels.push(registro.momento_grafico);
-            dados.datasets[0].data.push(registro.setor1);
+            dados.datasets[0].data.push(registro.setor2);
         }
 
         console.log(JSON.stringify(dados));
@@ -370,16 +370,15 @@ function obterDadosGrafico(idGrafico) {
                 scales: {
                     yAxes: [{
                         type: 'linear',
-                        display: false,
+                        display: true,
                         position: 'left',
                         id: 'y-setor2',
                         ticks: {
                             beginAtZero: true,
                             max: 2,
                             min: 0
-                        }, 
-
-                        }],
+                        }
+                    }],
                 }
             }
         });
@@ -427,8 +426,8 @@ function obterDadosGrafico(idGrafico) {
                 scales: {
                     yAxes: [{
                         type: 'linear',
-                        display: false,
-                        position: 'right',
+                        display: true,
+                        position: 'left',
                         id: 'y-setor3',
                         ticks: {
                             beginAtZero: true,
@@ -488,8 +487,8 @@ function obterDadosGrafico(idGrafico) {
                 scales: {
                     yAxes: [{
                         type: 'linear',
-                        display: false,
-                        position: 'right',
+                        display: true,
+                        position: 'left',
                         id: 'y-setor4',
                         ticks: {
                             beginAtZero: true,
