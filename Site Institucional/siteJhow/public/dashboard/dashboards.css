@@ -126,9 +126,41 @@ body {
 }
 
 .graph {
-  width: 80%;
-  margin: auto;
+  width: 100%;
+  margin: 0;
   padding-top: 10px;
+}
+
+.graphSetores {
+  width: 30vw;
+  height: 20vh;
+  padding-top: 10px;
+  margin-left: 97px;
+  display: flex;
+}
+
+.graphSetores2 {
+  width: 30vw;
+  height: 20vh;
+  padding-top: 100px;
+  margin-left: 97px;
+  display: flex;
+}
+
+#canvas_grafico {
+  padding: 10px;
+}
+
+#canvas_grafico2 {
+  padding: 10px;
+}
+
+#canvas_grafico3 {
+  padding: 10px;
+}
+
+#canvas_grafico4 {
+  padding: 10px;
 }
 
 .dash_grafico {
