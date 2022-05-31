@@ -70,11 +70,11 @@
                 </h3>
             </div>
             <div class="graph">
-                <div class="graphSetores">
+                <div class="graphSetores" id="graphS1">
                     <canvas id="canvas_grafico" style="padding: 10px;"></canvas>
                     <canvas id="canvas_grafico2"></canvas>
                 </div>
-                <div class="graphSetores2">
+                <div class="graphSetores2" id="graphS2">
                     <canvas id="canvas_grafico3"></canvas>
                     <canvas id="canvas_grafico4"></canvas>
                 </div>
@@ -102,12 +102,14 @@ function alterarTitulo(idGrafico) {
 
 function obterDadosGrafico(idGrafico) {
         alterarTitulo(idGrafico)
-        var canvas_grafico = document.getElementById("canvas_grafico");
+        var graphS1 = document.getElementById("graphS1");
+        var graphS2 = document.getElementById("graphS2");
         var canvas_graficoDiario = document.getElementById("canvas_graficoDiario");
         var canvas_graficoSemanal = document.getElementById("canvas_graficoSemanal");
         var canvas_graficoMensal = document.getElementById("canvas_graficoMensal");
         var canvas_graficoAnual = document.getElementById("canvas_graficoAnual");
-        canvas_grafico.style.display = "block";
+        graphS1.style.display = "flex";
+        graphS2.style.display = "flex";
         canvas_graficoDiario.style.display = "none";
         canvas_graficoSemanal.style.display = "none";
         canvas_graficoMensal.style.display = "none";
@@ -140,12 +142,14 @@ function obterDadosGrafico(idGrafico) {
 
     function obterDadosGraficoDiario(idGrafico) {
         alterarTitulo(idGrafico)
-        var canvas_grafico = document.getElementById("canvas_grafico");
+        var graphS1 = document.getElementById("graphS1");
+        var graphS2 = document.getElementById("graphS2");
         var canvas_graficoDiario = document.getElementById("canvas_graficoDiario");
         var canvas_graficoSemanal = document.getElementById("canvas_graficoSemanal");
         var canvas_graficoMensal = document.getElementById("canvas_graficoMensal");
         var canvas_graficoAnual = document.getElementById("canvas_graficoAnual");
-        canvas_grafico.style.display = "none";
+        graphS1.style.display = "none";
+        graphS2.style.display = "none";
         canvas_graficoDiario.style.display = "block";
         canvas_graficoSemanal.style.display = "none";
         canvas_graficoMensal.style.display = "none";
@@ -174,12 +178,14 @@ function obterDadosGrafico(idGrafico) {
 
     function obterDadosGraficoSemanal(idGrafico) {
         alterarTitulo(idGrafico)
-        var canvas_grafico = document.getElementById("canvas_grafico");
+        var graphS1 = document.getElementById("graphS1");
+        var graphS2 = document.getElementById("graphS2");
         var canvas_graficoDiario = document.getElementById("canvas_graficoDiario");
         var canvas_graficoSemanal = document.getElementById("canvas_graficoSemanal");
         var canvas_graficoMensal = document.getElementById("canvas_graficoMensal");
         var canvas_graficoAnual = document.getElementById("canvas_graficoAnual");
-        canvas_grafico.style.display = "none";
+        graphS1.style.display = "none";
+        graphS2.style.display = "none";
         canvas_graficoDiario.style.display = "none";
         canvas_graficoSemanal.style.display = "block";
         canvas_graficoMensal.style.display = "none";
@@ -208,12 +214,14 @@ function obterDadosGrafico(idGrafico) {
 
     function obterDadosGraficoMensal(idGrafico) {
         alterarTitulo(idGrafico)
-        var canvas_grafico = document.getElementById("canvas_grafico");
+        var graphS1 = document.getElementById("graphS1");
+        var graphS2 = document.getElementById("graphS2");
         var canvas_graficoDiario = document.getElementById("canvas_graficoDiario");
         var canvas_graficoSemanal = document.getElementById("canvas_graficoSemanal");
         var canvas_graficoMensal = document.getElementById("canvas_graficoMensal");
         var canvas_graficoAnual = document.getElementById("canvas_graficoAnual");
-        canvas_grafico.style.display = "none";
+        graphS1.style.display = "none";
+        graphS2.style.display = "none";
         canvas_graficoDiario.style.display = "none";
         canvas_graficoSemanal.style.display = "none";
         canvas_graficoMensal.style.display = "block";
@@ -242,12 +250,14 @@ function obterDadosGrafico(idGrafico) {
 
     function obterDadosGraficoAnual(idGrafico) {
         alterarTitulo(idGrafico)
-        var canvas_grafico = document.getElementById("canvas_grafico");
+        var graphS1 = document.getElementById("graphS1");
+        var graphS2 = document.getElementById("graphS2");
         var canvas_graficoDiario = document.getElementById("canvas_graficoDiario");
         var canvas_graficoSemanal = document.getElementById("canvas_graficoSemanal");
         var canvas_graficoMensal = document.getElementById("canvas_graficoMensal");
         var canvas_graficoAnual = document.getElementById("canvas_graficoAnual");
-        canvas_grafico.style.display = "none";
+        graphS1.style.display = "none";
+        graphS2.style.display = "none";
         canvas_graficoDiario.style.display = "none";
         canvas_graficoSemanal.style.display = "none";
         canvas_graficoMensal.style.display = "none";

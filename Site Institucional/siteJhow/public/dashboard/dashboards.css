@@ -126,8 +126,8 @@ body {
 }
 
 .graph {
-  width: 100%;
-  margin: 0;
+  width: 90%;
+  margin: 0 auto;
   padding-top: 10px;
 }
 
@@ -135,16 +135,16 @@ body {
   width: 30vw;
   height: 20vh;
   padding-top: 10px;
-  margin-left: 97px;
-  display: flex;
+  margin-left: 41px;
+  display: none;
 }
 
 .graphSetores2 {
   width: 30vw;
   height: 20vh;
   padding-top: 100px;
-  margin-left: 97px;
-  display: flex;
+  margin-left: 41px;
+  display: none;
 }
 
 #canvas_grafico {
