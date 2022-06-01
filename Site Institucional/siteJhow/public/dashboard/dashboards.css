@@ -263,8 +263,7 @@ canvas #myChart {
   margin: 20px;
 }
 
-.temperatura,
-.umidade {
+.chave{
   margin: 5px;
   margin-left: 20px;
   width: 75%;

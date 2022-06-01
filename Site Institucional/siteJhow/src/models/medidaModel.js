@@ -33,15 +33,15 @@ function buscarUltimasMedidas(idGrafico, limite_linhas, tipoGrafico) {
         }
     } else if(tipoGrafico == 'diário') {
         if (process.env.AMBIENTE_PROCESSO == "producao") {
-            instrucaoSql = `select top ${limite_linhas}
-                            chave as setor1, 
-                            chave as setor2,
-                            chave as setor3,
-                            chave as setor4,
+            instrucaoSql = `select top 13
+                            (chave + 15000) as setor1, 
+                            (chave + 25000) as setor2,
+                            (chave + 30000) as setor3,
+                            (chave + 8000) as setor4,
                             momento,
                             CONVERT(varchar, momento, 108) as momento_grafico
                         from medida
-                        where fkGrafico = ${idGrafico}
+                        where fkGrafico = 2
                         order by idMedida desc`;
         } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
             instrucaoSql = `select 
@@ -53,8 +53,8 @@ function buscarUltimasMedidas(idGrafico, limite_linhas, tipoGrafico) {
                             DATE_FORMAT(momento,'%H:%i:%s') as momento_grafico
                         from medida
                         where fkGrafico = ${idGrafico} and
-                        momento >= '2022-06-08 10:00:00' and
-                        momento <= '2022-06-08 22h:00:00'
+                        momento_grafico >= '2022-06-08 10:00:00' and
+                        momento_grafico <= '2022-06-08 22:00:00'
                         order by idMedida desc limit 13`;
         } else {
             console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
@@ -62,15 +62,15 @@ function buscarUltimasMedidas(idGrafico, limite_linhas, tipoGrafico) {
         }
     } else if(tipoGrafico == 'semanal') {
         if (process.env.AMBIENTE_PROCESSO == "producao") {
-            instrucaoSql = `select top ${limite_linhas}
-                            chave as setor1, 
-                            chave as setor2,
-                            chave as setor3,
-                            chave as setor4,
+            instrucaoSql = `select top 7
+                            (chave + 15000) as setor1, 
+                            (chave + 25000) as setor2,
+                            (chave + 30000) as setor3,
+                            (chave + 8000) as setor4,
                             momento,
                             CONVERT(varchar, momento, 108) as momento_grafico
                         from medida
-                        where fkGrafico = ${idGrafico}
+                        where fkGrafico = 3
                         order by idMedida desc`;
         } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
             instrucaoSql = `select 
@@ -91,15 +91,15 @@ function buscarUltimasMedidas(idGrafico, limite_linhas, tipoGrafico) {
         }
     } else if(tipoGrafico == 'mensal') {
         if (process.env.AMBIENTE_PROCESSO == "producao") {
-            instrucaoSql = `select top ${limite_linhas}
-                            chave as setor1, 
-                            chave as setor2,
-                            chave as setor3,
-                            chave as setor4,
+            instrucaoSql = `select top 12
+                            (chave + 15000) as setor1, 
+                            (chave + 25000) as setor2,
+                            (chave + 30000) as setor3,
+                            (chave + 8000) as setor4,
                             momento,
                             CONVERT(varchar, momento, 108) as momento_grafico
                         from medida
-                        where fkGrafico = ${idGrafico}
+                        where fkGrafico = 4
                         order by idMedida desc`;
         } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
             instrucaoSql = `select 
@@ -120,15 +120,15 @@ function buscarUltimasMedidas(idGrafico, limite_linhas, tipoGrafico) {
         }
     } else if(tipoGrafico == 'anual') {
         if (process.env.AMBIENTE_PROCESSO == "producao") {
-            instrucaoSql = `select top ${limite_linhas}
-                            chave as setor1, 
-                            chave as setor2,
-                            chave as setor3,
-                            chave as setor4,
+            instrucaoSql = `select top 6
+                            (chave + 15000) as setor1, 
+                            (chave + 25000) as setor2,
+                            (chave + 30000) as setor3,
+                            (chave + 8000) as setor4,
                             momento,
                             CONVERT(varchar, momento, 108) as momento_grafico
                         from medida
-                        where fkGrafico = ${idGrafico}
+                        where fkGrafico = 5
                         order by idMedida desc`;
         } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
             instrucaoSql = `select 
@@ -182,59 +182,59 @@ function buscarMedidasEmTempoReal(idGrafico, tipoGrafico) {
                 console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
                 return
             }
-        } else if(tipoGrafico == 'diário') {
-            if (process.env.AMBIENTE_PROCESSO == "producao") {       
-                instrucaoSql = `select top 1
-                                chave as setor1, 
-                                chave as setor2,
-                                chave as setor3,
-                                chave as setor4,
-                                CONVERT(varchar, momento, 108) as momento_grafico, 
-                                fkGrafico
-                                from medida where fkGrafico = ${idGrafico} 
-                            order by idMedida desc`;
+        } //else if(tipoGrafico == 'diário') {
+        //     if (process.env.AMBIENTE_PROCESSO == "producao") {       
+        //         instrucaoSql = `select top 1
+        //                         chave as setor1, 
+        //                         chave as setor2,
+        //                         chave as setor3,
+        //                         chave as setor4,
+        //                         CONVERT(varchar, momento, 108) as momento_grafico, 
+        //                         fkGrafico
+        //                         from medida where fkGrafico = ${idGrafico} 
+        //                     order by idMedida desc`;
                 
-            } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-                instrucaoSql = `select 
-                                (chave + 15532) as setor1, 
-                                (chave + 25721) as setor2,
-                                (chave + 30391) as setor3,
-                                (chave + 8429) as setor4,
-                                DATE_FORMAT(momento,'%H:%i:%s') as momento_grafico, 
-                                fkGrafico
-                                from medida where fkGrafico = ${idGrafico} 
-                            order by idMedida desc limit 1`;
-            } else {
-                console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
-                return
-            }
-        } else if(tipoGrafico == 'semanal') {
-            if (process.env.AMBIENTE_PROCESSO == "producao") {       
-                instrucaoSql = `select top 1
-                                chave as setor1, 
-                                chave as setor2,
-                                chave as setor3,
-                                chave as setor4,
-                                CONVERT(varchar, momento, 108) as momento_grafico, 
-                                fkGrafico
-                                from medida where fkGrafico = ${idGrafico} 
-                            order by idMedida desc`;
+        //     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        //         instrucaoSql = `select 
+        //                         (chave + 15532) as setor1, 
+        //                         (chave + 25721) as setor2,
+        //                         (chave + 30391) as setor3,
+        //                         (chave + 8429) as setor4,
+        //                         DATE_FORMAT(momento,'%H:%i:%s') as momento_grafico, 
+        //                         fkGrafico
+        //                         from medida where fkGrafico = ${idGrafico} 
+        //                     order by idMedida desc limit 1`;
+        //     } else {
+        //         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        //         return
+        //     }
+        // } else if(tipoGrafico == 'semanal') {
+        //     if (process.env.AMBIENTE_PROCESSO == "producao") {       
+        //         instrucaoSql = `select top 1
+        //                         chave as setor1, 
+        //                         chave as setor2,
+        //                         chave as setor3,
+        //                         chave as setor4,
+        //                         CONVERT(varchar, momento, 108) as momento_grafico, 
+        //                         fkGrafico
+        //                         from medida where fkGrafico = ${idGrafico} 
+        //                     order by idMedida desc`;
                 
-            } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-                instrucaoSql = `select 
-                                (chave + 15532) as setor1, 
-                                (chave + 25721) as setor2,
-                                (chave + 30391) as setor3,
-                                (chave + 8429) as setor4,
-                                DATE_FORMAT(momento,'%H:%i:%s') as momento_grafico, 
-                                fkGrafico
-                                from medida where fkGrafico = ${idGrafico} 
-                            order by idMedida desc limit 1`;
-            } else {
-                console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
-                return
-            }
-        }
+        //     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        //         instrucaoSql = `select 
+        //                         (chave + 15532) as setor1, 
+        //                         (chave + 25721) as setor2,
+        //                         (chave + 30391) as setor3,
+        //                         (chave + 8429) as setor4,
+        //                         DATE_FORMAT(momento,'%H:%i:%s') as momento_grafico, 
+        //                         fkGrafico
+        //                         from medida where fkGrafico = ${idGrafico} 
+        //                     order by idMedida desc limit 1`;
+        //     } else {
+        //         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        //         return
+        //     }
+        // }
     
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);

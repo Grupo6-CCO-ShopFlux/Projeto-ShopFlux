@@ -18,8 +18,8 @@
         rel="stylesheet">
 </head>
 
-<body onload="validarSessao()">
-    <!-- atualizacaoPeriodica()" -->
+<body onload="validarSessao(), atualizacaoPeriodica()">
+    <!-- " -->
     <div class="janela">
 
 
@@ -46,6 +46,7 @@
                     <h3>Gráficos</h3>
                 </a>
             </div>
+
             <div class="btn-nav-white">
                 <a href="https://app.pipefy.com/public/form/g6gqLqyH">
                     <h3>Suporte</h3>
@@ -63,32 +64,32 @@
             <div class="cards">
                 <div class="card">
                     <h1>Setor 1</h1>
-                    <div class="temperatura">
-                        <p id="temp_aquario_1">Baixo</p>
+                    <div class="chave">
+                        <p id="fluxo_setor_1">Baixo</p>
                     </div>
-                    <div class="cor-alerta alerta-frio" id="card_1"></div>
+                    <div class="" id="card_1"></div>
                 </div>
                 <div class="card">
                     <h1>Setor 2</h1>
-                    <div class="temperatura">
-                        <p id="temp_aquario_2">Normal</p>
+                    <div class="chave">
+                        <p id="fluxo_setor_2">Normal</p>
                     </div>
-                    <div class="cor-alerta ideal" id="card_2"></div>
+                    <div class="" id="card_2"></div>
 
                 </div>
                 <div class="card">
                     <h1>Setor 3</h1>
-                    <div class="temperatura">
-                        <p id="temp_aquario_3">Alto</p>
+                    <div class="chave">
+                        <p id="fluxo_setor_3">Alto</p>
                     </div>
-                    <div class="cor-alerta alerta-quente" id="card_3"></div>
+                    <div class="" id="card_3"></div>
                 </div>
                 <div class="card">
                     <h1>Setor 4</h1>
-                    <div class="temperatura">
-                        <p id="temp_aquario_4">Muito Baixo</p>
+                    <div class="chave">
+                        <p id="fluxo_setor_4">Muito Baixo</p>
                     </div>
-                    <div class="cor-alerta perigo-frio" id="card_4"></div>
+                    <div class="" id="card_4"></div>
                 </div>
 
             </div>
@@ -119,14 +120,14 @@
 <script>
 
     function atualizacaoPeriodica() {
-        obterdados(1);
-        obterdados(2);
-        obterdados(3);
-        obterdados(4);
+        obterdados('tempo real');
+        obterdados('tempo real');
+        obterdados('tempo real');
+        obterdados('tempo real');
 
         function sendData() {
 			var http = new XMLHttpRequest();
-			http.open('POST', 'http://localhost:3000/api/sendData', false);
+			http.open('POST', 'http://localhost:3333/api/sendData', true);
 			http.send(null);
 		}
 
@@ -136,8 +137,8 @@
         setTimeout(atualizacaoPeriodica, 5000);
     }
 
-    function obterdados(idAquario) {
-        fetch(`/medidas/tempo-real/${idAquario}`)
+    function obterdados(idGrafico) {
+        fetch(`/medidas/tempo-real/${idGrafico}`)
             .then(resposta => {
 
                 if (resposta.ok) {
@@ -146,10 +147,10 @@
                         console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
                         var dados = {
-                            temperatura: resposta[0].temperatura,
+                            fluxo: resposta[0].chave,
                         }
 
-                        alertar(resposta[0].temperatura, idAquario);
+                        alertar(resposta[0].chave, idGrafico);
                     });
                 } else {
 
@@ -157,12 +158,12 @@
                 }
             })
             .catch(function (error) {
-                console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
+                console.error(`Erro na obtenção dos dados do setores p/ gráfico: ${error.message}`);
             });
 
     }
 
-    function alertar(temperatura, idAquario) {
+    function alertar(chave, idGrafico) {
         var limites = {
             muito_quente: 23,
             quente: 22,
@@ -171,47 +172,52 @@
             muito_frio: 5
         };
 
-        var classe_temperatura = 'cor-alerta';
+        var classe_fluxo = 'cor-alerta';
 
-        if (temperatura >= limites.muito_quente) {
-            classe_temperatura = 'cor-alerta perigo-quente';
+        if (chave >= limites.muito_quente) {
+            classe_fluxo = 'cor-alerta perigo-quente';
+            fluxo = 'Muito alto';
             console.log("caiu no 1")
         }
-        else if (temperatura < limites.muito_quente && temperatura >= limites.quente) {
-            classe_temperatura = 'cor-alerta alerta-quente';
+        else if (chave < limites.muito_quente && chave >= limites.quente) {
+            classe_fluxo = 'cor-alerta alerta-quente';
+            fluxo = 'Alto';
             console.log("caiu no 2")
         }
-        else if (temperatura < limites.quente && temperatura > limites.frio) {
-            classe_temperatura = 'cor-alerta ideal';
+        else if (chave < limites.quente && chave > limites.frio) {
+            classe_fluxo = 'cor-alerta alerta-frio';
+            fluxo = 'Baixo';
             console.log("caiu no 3")
         }
-        else if (temperatura <= limites.frio && temperatura > limites.muito_frio) {
-            classe_temperatura = 'cor-alerta alerta-frio';
+        else if (chave <= limites.frio && chave > limites.muito_frio) {
+            classe_fluxo = 'cor-alerta perigo-frio';
+            fluxo = 'Muito baixo';
             console.log("caiu no 4")
         }
-        else if (temperatura < limites.min_temperatura) {
-            classe_temperatura = 'cor-alerta perigo-frio';
+        else if (chave < limites.ideal) {
+            classe_fluxo = 'cor-alerta ideal';
+            fluxo = 'Normal';
             console.log("caiu no 5")
         }
 
         var card;
 
-        if (idAquario == 1) {
-            temp_aquario_1.innerHTML = temperatura + "°C";
+        if (idGrafico == 1) {
+            fluxo_setor_1.innerHTML = fluxo;
             card = card_1
-        } else if (idAquario == 2) {
-            temp_aquario_2.innerHTML = temperatura + "°C";
+        } else if (idGrafico == 2) {
+            fluxo_setor_2.innerHTML = fluxo;
             card = card_2
-        } else if (idAquario == 3) {
-            temp_aquario_3.innerHTML = temperatura + "°C";
+        } else if (idGrafico == 3) {
+            fluxo_setor_3.innerHTML = fluxo;
             card = card_3
-        } else if (idAquario == 4) {
-            temp_aquario_4.innerHTML = temperatura + "°C";
+        } else if (idGrafico == 4) {
+            fluxo_setor_4.innerHTML = fluxo;
             card = card_4
         }
 
         // alterando
-        card.className = classe_temperatura;
+        card.className = classe_fluxo;
 
     }
 
