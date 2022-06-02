@@ -125,15 +125,6 @@
         obterdados('tempo real');
         obterdados('tempo real');
 
-        function sendData() {
-			var http = new XMLHttpRequest();
-			http.open('POST', 'http://localhost:3333/api/sendData', false);
-			http.send(null);
-		}
-
-        setInterval(() => {
-			sendData();
-		}, 2000);
         setTimeout(atualizacaoPeriodica, 5000);
     }
 
