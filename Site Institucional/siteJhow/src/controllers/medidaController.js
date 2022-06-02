@@ -47,7 +47,7 @@ function buscarMedidasEmTempoReal(req, res) {
         idGrafico = 1;
     } else if(idGrafico == 'diário') {
         var tipoGrafico = idGrafico;
-        idGrafico = 1;
+        idGrafico = 2;
     } else if(idGrafico == 'semanal') {
         var tipoGrafico = idGrafico;
         idGrafico = 1;

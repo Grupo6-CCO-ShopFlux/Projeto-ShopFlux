@@ -65,14 +65,14 @@
                 <div class="card">
                     <h1>Setor 1</h1>
                     <div class="chave">
-                        <p id="fluxo_setor_1">Baixo</p>
+                        <p id="fluxo_setor_1"></p>
                     </div>
                     <div class="" id="card_1"></div>
                 </div>
                 <div class="card">
                     <h1>Setor 2</h1>
                     <div class="chave">
-                        <p id="fluxo_setor_2">Normal</p>
+                        <p id="fluxo_setor_2"></p>
                     </div>
                     <div class="" id="card_2"></div>
 
@@ -80,14 +80,14 @@
                 <div class="card">
                     <h1>Setor 3</h1>
                     <div class="chave">
-                        <p id="fluxo_setor_3">Alto</p>
+                        <p id="fluxo_setor_3"></p>
                     </div>
                     <div class="" id="card_3"></div>
                 </div>
                 <div class="card">
                     <h1>Setor 4</h1>
                     <div class="chave">
-                        <p id="fluxo_setor_4">Muito Baixo</p>
+                        <p id="fluxo_setor_4"></p>
                     </div>
                     <div class="" id="card_4"></div>
                 </div>
@@ -147,10 +147,12 @@
                         console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
                         var dados = {
-                            fluxo: resposta[0].chave,
+                            fluxo: resposta[0].setor1,
                         }
 
-                        alertar(resposta[0].chave, idGrafico);
+                        console.log(dados);
+
+                        alertar(resposta[0].setor1, idGrafico);
                     });
                 } else {
 
@@ -165,37 +167,39 @@
 
     function alertar(chave, idGrafico) {
         var limites = {
-            muito_quente: 23,
-            quente: 22,
-            ideal: 20,
-            frio: 10,
-            muito_frio: 5
+            muito_alto: 4,
+            alto: 3,
+            normal: 2,
+            baixo: 1,
+            muito_baixo: 0
         };
+
+        console.log(chave)
 
         var classe_fluxo = 'cor-alerta';
         var fluxo = '';
 
-        if (chave >= limites.muito_quente) {
+        if (chave >= limites.muito_alto) {
             classe_fluxo = 'cor-alerta perigo-quente';
             fluxo = 'Muito alto';
             console.log("caiu no 1")
         }
-        else if (chave < limites.muito_quente && chave >= limites.quente) {
+        else if (chave == limites.alto) {
             classe_fluxo = 'cor-alerta alerta-quente';
             fluxo = 'Alto';
             console.log("caiu no 2")
         }
-        else if (chave < limites.quente && chave > limites.frio) {
+        else if (chave == limites.baixo) {
             classe_fluxo = 'cor-alerta alerta-frio';
             fluxo = 'Baixo';
             console.log("caiu no 3")
         }
-        else if (chave <= limites.frio && chave > limites.muito_frio) {
+        else if (chave == limites.muito_baixo) {
             classe_fluxo = 'cor-alerta perigo-frio';
             fluxo = 'Muito baixo';
             console.log("caiu no 4")
         }
-        else if (chave < limites.ideal) {
+        else if (chave == limites.normal) {
             classe_fluxo = 'cor-alerta ideal';
             fluxo = 'Normal';
             console.log("caiu no 5")
@@ -205,16 +209,16 @@
 
         if (idGrafico == 'tempo real') {
             fluxo_setor_1.innerHTML = fluxo;
-            card = card_1
-        } else if (idGrafico == 'tempo real') {
+            card = 'card_1';
+        } if (idGrafico == 'tempo real') {
             fluxo_setor_2.innerHTML = fluxo;
-            card = card_2
-        } else if (idGrafico == 'tempo real') {
+            card = 'card_2';
+        }  if (idGrafico == 'tempo real') {
             fluxo_setor_3.innerHTML = fluxo;
-            card = card_3
-        } else if (idGrafico == 'tempo real') {
+            card = 'card_3';
+        }  if (idGrafico == 'tempo real') {
             fluxo_setor_4.innerHTML = fluxo;
-            card = card_4
+            card = 'card_4';
         }
 
         // alterando
