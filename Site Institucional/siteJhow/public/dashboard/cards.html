@@ -127,7 +127,7 @@
 
         function sendData() {
 			var http = new XMLHttpRequest();
-			http.open('POST', 'http://localhost:3333/api/sendData', true);
+			http.open('POST', 'http://localhost:3333/api/sendData', false);
 			http.send(null);
 		}
 
@@ -173,6 +173,7 @@
         };
 
         var classe_fluxo = 'cor-alerta';
+        var fluxo = '';
 
         if (chave >= limites.muito_quente) {
             classe_fluxo = 'cor-alerta perigo-quente';
@@ -202,16 +203,16 @@
 
         var card;
 
-        if (idGrafico == 1) {
+        if (idGrafico == 'tempo real') {
             fluxo_setor_1.innerHTML = fluxo;
             card = card_1
-        } else if (idGrafico == 2) {
+        } else if (idGrafico == 'tempo real') {
             fluxo_setor_2.innerHTML = fluxo;
             card = card_2
-        } else if (idGrafico == 3) {
+        } else if (idGrafico == 'tempo real') {
             fluxo_setor_3.innerHTML = fluxo;
             card = card_3
-        } else if (idGrafico == 4) {
+        } else if (idGrafico == 'tempo real') {
             fluxo_setor_4.innerHTML = fluxo;
             card = card_4
         }
