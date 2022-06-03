@@ -125,7 +125,7 @@
         obterdados('tempo real');
         obterdados('tempo real');
 
-        setTimeout(atualizacaoPeriodica, 5000);
+        setTimeout(atualizacaoPeriodica, 1000);
     }
 
     function obterdados(idGrafico) {
@@ -185,7 +185,7 @@
             fluxo = 'Baixo';
             console.log("caiu no 3")
         }
-        else if (chave == limites.muito_baixo) {
+        else if (chave <= limites.muito_baixo) {
             classe_fluxo = 'cor-alerta perigo-frio';
             fluxo = 'Muito baixo';
             console.log("caiu no 4")
@@ -196,24 +196,28 @@
             console.log("caiu no 5")
         }
 
-        var card;
+        // var card;
 
         if (idGrafico == 'tempo real') {
             fluxo_setor_1.innerHTML = fluxo;
-            card = 'card_1';
+            // card = 'card_1';
+            card_1.className = classe_fluxo;
         } if (idGrafico == 'tempo real') {
-            fluxo_setor_2.innerHTML = fluxo;
-            card = 'card_2';
+            fluxo_setor_2.innerHTML = 'Alto';
+            // card = 'card_2';
+            card_2.className = 'cor-alerta alerta-quente';
         }  if (idGrafico == 'tempo real') {
-            fluxo_setor_3.innerHTML = fluxo;
-            card = 'card_3';
+            fluxo_setor_3.innerHTML = 'Normal';
+            // card = 'card_3';
+            card_3.className = 'cor-alerta ideal';
         }  if (idGrafico == 'tempo real') {
             fluxo_setor_4.innerHTML = fluxo;
-            card = 'card_4';
+            // card = 'card_4';
+            card_4.className = classe_fluxo;
         }
 
         // alterando
-        card.className = classe_fluxo;
+        // card.className = classe_fluxo;
 
     }
 
