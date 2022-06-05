@@ -4,8 +4,9 @@ use ShopFlux;
 
 create table telefone (
 	idTelefone int primary key auto_increment,
-    foneCelular char(11),
-    foneFixo char(10)
+    telefone char(11),
+    fkFuncionario int,
+    foreign key(fkFuncionario) references funcionario(idFuncionario)
 );
 
 create table endereco (
@@ -24,8 +25,6 @@ create table funcionario (
     login varchar(45),
     senha varchar(45),
     email varchar(45),
-    fkTelefone int,
-    foreign key (fkTelefone) references telefone (idTelefone),
     fkShopping int,
     foreign key (fkShopping) references shopping(idShopping), 
     fkGestor int,
@@ -42,31 +41,26 @@ create table shopping (
 )auto_increment = 1000;
 
 create table dados (
-	idDados int primary key auto_increment,
-    fluxoMedia varchar(45) check(fluxoMedia = 'muito baixo' and fluxoMedia = 'baixo' and fluxoMedia = 'normal' 
-    and fluxoMedia = 'alto' and fluxoMedia = 'muito alto'),
-    fluxoDiario varchar(45) check(fluxoDiario = 'muito baixo' and fluxoDiario = 'baixo' and fluxoDiario = 'normal' 
-    and fluxoDiario = 'alto' and fluxoDiario = 'muito alto'),
-    fluxoSemanal varchar(45) check(fluxoSemanal = 'muito baixo' and fluxoSemanal = 'baixo' and fluxoSemanal = 'normal' 
-    and fluxoSemanal = 'alto' and fluxoSemanal = 'muito alto'),
-    fluxoMensal varchar(45) check(fluxoMensal = 'muito baixo' and fluxoMensal = 'baixo' and fluxoMensal = 'normal' 
-    and fluxoMensal = 'alto' and fluxoMensal = 'muito alto')
-)auto_increment = 100;
+	fkSensor int,
+    foreign key(fkSensor) references sensor(idSensor),
+    idDados int,
+	primary key(fkSensor, idDados),
+    momento datetime,
+    chave int
+);
 
 create table sensor (
 	idSensor int primary key auto_increment,
     modeloSensor varchar(45),
-    fkDados int,
-    foreign key (fkDados) references dados (idDados)
+    fkSetor int,
+    foreign key(fkSetor) references setor(idSetor)
 );
 
 create table setor (
 	idSetor int primary key auto_increment,
     qtdLojasSetor int,
     fkShopping int,
-    foreign key (fkShopping) references shopping(idShopping),
-    fkSensor int,
-    foreign key (fkSensor) references sensor(idSensor)
+    foreign key (fkShopping) references shopping(idShopping)
 )auto_increment = 100;
 
 create table loja (
