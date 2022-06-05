@@ -6,7 +6,7 @@ body {
   background: linear-gradient(180deg, #D2C1C1 0%, #D2C1C1 96.35%, #C8705C 100%);
   background-repeat: no-repeat;
   /*width: 100%;*/
-  height: 617px;
+  height: 100vh;
   font-family: monospace;
 }
 
@@ -24,6 +24,13 @@ body {
   border-bottom: 3px solid white;
   transition: 0.8;
 }
+
+.atual {
+  padding-bottom: 4px;
+  border-bottom: 3px solid white;
+  transition: 0.8;
+}
+
 a {
   text-decoration: none;
 }
@@ -46,8 +53,8 @@ a {
 }
 
 .check{
-  display: flex;
   margin-left: 548px;
+  color: #e43b3b;
 }
 .txt{
   margin-right: 220px;
@@ -64,6 +71,7 @@ a {
   border-top: none;
   border-right: none;
   border-left: none;
+  outline: none;
 }
 
 .btLogin {

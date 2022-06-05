@@ -5,6 +5,7 @@ body {
     background: linear-gradient(180deg, #D2C1C1 0%, #D2C1C1 96.35%, #C8705C 100%);
     font-family: monospace;
     color: #e43b3b; 
+    height: 108vh;
 }
 
 
@@ -59,6 +60,12 @@ ul li a{
     align-items: center;
 }
 
+.atual {
+    padding-bottom: 4px;
+    border-bottom: 3px solid white;
+    transition: 0.8;
+}
+
 .navBar a:hover {
     padding-bottom: 4px;
     border-bottom: 3px solid white;
@@ -104,6 +111,7 @@ ul li a{
     border-top: none;
     border-right: none;
     border-left: none;
+    outline: none;
 }
 /* fim dos imputs */
 

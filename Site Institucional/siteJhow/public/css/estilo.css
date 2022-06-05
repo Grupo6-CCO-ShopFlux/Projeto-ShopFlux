@@ -46,6 +46,12 @@ ul li a{
     align-items: center;
 }
 
+.atual {
+    padding-bottom: 4px;
+    border-bottom: 3px solid white;
+    transition: 0.8;
+}
+
 .navBar a:hover {
     padding-bottom: 4px;
     border-bottom: 3px solid white;
