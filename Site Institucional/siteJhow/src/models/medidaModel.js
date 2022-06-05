@@ -34,10 +34,10 @@ function buscarUltimasMedidas(idGrafico, limite_linhas, tipoGrafico) {
     } else if(tipoGrafico == 'diário') {
         if (process.env.AMBIENTE_PROCESSO == "producao") {
             instrucaoSql = `select top 13
-                            (chave + 15000) as setor1, 
-                            (chave + 25000) as setor2,
-                            (chave + 30000) as setor3,
-                            (chave + 8000) as setor4,
+                            (chave - 10000) as setor1, 
+                            (chave - 5000) as setor2,
+                            chave as setor3,
+                            (chave - 15000) as setor4,
                             momento,
                             CONVERT(varchar, momento, 108) as momento_grafico
                         from medida
@@ -63,10 +63,10 @@ function buscarUltimasMedidas(idGrafico, limite_linhas, tipoGrafico) {
     } else if(tipoGrafico == 'semanal') {
         if (process.env.AMBIENTE_PROCESSO == "producao") {
             instrucaoSql = `select top 7
-                            (chave + 15000) as setor1, 
-                            (chave + 25000) as setor2,
-                            (chave + 30000) as setor3,
-                            (chave + 8000) as setor4,
+                            (chave - 100000) as setor1, 
+                            (chave - 50000) as setor2,
+                            chave as setor3,
+                            (chave - 150000) as setor4,
                             momento,
                             CONVERT(varchar, momento, 108) as momento_grafico
                         from medida
@@ -74,10 +74,10 @@ function buscarUltimasMedidas(idGrafico, limite_linhas, tipoGrafico) {
                         order by idMedida desc`;
         } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
             instrucaoSql = `select 
-                            (chave + 15000) as setor1, 
-                            (chave + 25000) as setor2,
-                            (chave + 30000) as setor3,
-                            (chave + 8000) as setor4,
+                            (chave + 180000) as setor1, 
+                            (chave + 300000) as setor2,
+                            (chave + 360000) as setor3,
+                            (chave + 96000) as setor4,
                             momento,
                             DATE_FORMAT(momento,'%H:%i:%s') as momento_grafico
                         from medida
@@ -92,10 +92,10 @@ function buscarUltimasMedidas(idGrafico, limite_linhas, tipoGrafico) {
     } else if(tipoGrafico == 'mensal') {
         if (process.env.AMBIENTE_PROCESSO == "producao") {
             instrucaoSql = `select top 12
-                            (chave + 15000) as setor1, 
-                            (chave + 25000) as setor2,
-                            (chave + 30000) as setor3,
-                            (chave + 8000) as setor4,
+                            (chave - 1000000) as setor1, 
+                            (chave - 500000) as setor2,
+                            chave as setor3,
+                            (chave - 1500000) as setor4,
                             momento,
                             CONVERT(varchar, momento, 108) as momento_grafico
                         from medida
@@ -103,10 +103,10 @@ function buscarUltimasMedidas(idGrafico, limite_linhas, tipoGrafico) {
                         order by idMedida desc`;
         } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
             instrucaoSql = `select 
-                            (chave + 15000) as setor1, 
-                            (chave + 25000) as setor2,
-                            (chave + 30000) as setor3,
-                            (chave + 8000) as setor4,
+                            (chave + 2160000) as setor1, 
+                            (chave + 3600000) as setor2,
+                            (chave + 4320000) as setor3,
+                            (chave + 1152000) as setor4,
                             momento,
                             DATE_FORMAT(momento,'%H:%i:%s') as momento_grafico
                         from medida
@@ -121,10 +121,10 @@ function buscarUltimasMedidas(idGrafico, limite_linhas, tipoGrafico) {
     } else if(tipoGrafico == 'anual') {
         if (process.env.AMBIENTE_PROCESSO == "producao") {
             instrucaoSql = `select top 6
-                            (chave + 15000) as setor1, 
-                            (chave + 25000) as setor2,
-                            (chave + 30000) as setor3,
-                            (chave + 8000) as setor4,
+                            (chave - 10000000) as setor1, 
+                            (chave - 5000000) as setor2,
+                            chave as setor3,
+                            (chave - 15000000) as setor4,
                             momento,
                             CONVERT(varchar, momento, 108) as momento_grafico
                         from medida
