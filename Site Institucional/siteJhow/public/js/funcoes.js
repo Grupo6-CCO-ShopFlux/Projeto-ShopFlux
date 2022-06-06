@@ -27,26 +27,21 @@ function limparSessao() {
     window.location = "../login.html";
 }
 
-// carregamento (loading)
-/*
 function aguardar() {
     var divAguardar = document.getElementById("div_aguardar");
+    var divCampos = document.getElementById("contCad");
+    divCampos.style.display = "none";
+    divAguardar.style.display = "block";
     divAguardar.style.display = "flex";
 }
-*/
 
-/*
-function finalizarAguardar(texto) {
+function finalizarAguardar() {
     var divAguardar = document.getElementById("div_aguardar");
+    var divCampos = document.getElementById("contCad");
     divAguardar.style.display = "none";
-
-    var divErrosLogin = document.getElementById("div_erros_login");
-    if (texto) {
-        divErrosLogin.innerHTML = texto;
-    }
+    divCampos.style.display = "block";
+    divCampos.style.display = "flex";
 }
-*/
-
 
 // modal
 function mostrarModal() {

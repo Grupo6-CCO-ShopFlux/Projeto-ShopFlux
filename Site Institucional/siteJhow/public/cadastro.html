@@ -33,7 +33,8 @@
     <img class="vetor2" src="assets/imgs/vetorMenor.png" alt="">
 
     <div class="bgCad">
-        <div class="contCad">
+        <div class="contCad" id="contCad">
+            
             <h1>Faça seu Cadastro</h1>
 
             <span class="txtCad1">Nome Completo</span>
@@ -62,13 +63,19 @@
             <a href="login.html">Você já tem um cadastro?</a>
             <br><br>
         </div>
+        <div id="div_aguardar" class="loading">
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <span>Carregando...</span>
+        </div>
     </div>
 </body>
 </html>
 <script>
 
     function cadastrar() {
-        //aguardar();
+        aguardar();
 
         var nomeVar = nome_input.value;
         var emailVar = email_input.value;
@@ -79,7 +86,7 @@
         if (nomeVar == "" || emailVar == "" || senhaVar == "" || telefoneVar == "" || cpfVar == "") {
             alert("ERRO - Campos em branco!");
 
-            //finalizarAguardar();
+            finalizarAguardar();
             return false;
         }
         /*else {
@@ -91,8 +98,8 @@
             /*
             cardErro.style.display = "block";
             mensagem_erro.innerHTML = "Ops, CPF inválido! Verifique e tente novamente.";
-            finalizarAguardar();
             */
+            finalizarAguardar();
             return false;
         }
         /*else {
@@ -104,8 +111,8 @@
             /*
             cardErro.style.display = "block";
             mensagem_erro.innerHTML = "Ops, CPF inválido! Verifique e tente novamente.";
-            finalizarAguardar();
             */
+            finalizarAguardar();
             return false;
         }
         /*else {
@@ -117,8 +124,8 @@
             /*
             cardErro.style.display = "block"
             mensagem_erro.innerHTML = "Ops, e-mail inválido! Verifique e tente novamente.";
-            finalizarAguardar();
             */
+            finalizarAguardar();
             return false;
         }
         /*else {
@@ -130,8 +137,9 @@
             /*
             cardErro.style.display = "block"
             mensagem_erro.innerHTML = "A senha é muito pequena!";
-            finalizarAguardar();
+            
             */
+            finalizarAguardar();
             return false;
         }
         /*else {
