@@ -33,7 +33,7 @@
         <img class="vetor2" src="assets/imgs/vetorMenor.png" alt="">
 
     <div class="bgLogin">
-        <div class="contlogin">
+        <div class="contlogin" id="contlogin">
             <h1> Login</h1>
 
             <p>Faça login e comece a gerenciar seus dados!</p>
@@ -44,23 +44,27 @@
             <br><br>
 
             <span class="txt">Senha</span> 
-            <input type="password" id="senha_input" placeholder="**********">
+            <input type="password" id="senha_input" placeholder="**********"> <br><br>       
+    
+            <button class="btLogin" onclick="entrar()">Entrar</button>
 
         </div> <br>
 
-        <div class="check">
-            <input type="checkbox">Lembre-me <br> <a href="cadastro.html"><span style="color: #AE4848;">esqueceu a senha?</span></a> 
-        </div> <br>
+        <div id="div_aguardar" class="loading">
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <span>Carregando...</span>
+        </div>
+
         
-
-        <button class="btLogin" onclick="entrar()">Entrar</button>
     </div>
 </body>
 </html>
 <script>
 
     function entrar() {
-        //aguardar();
+        aguardar2();
 
         var emailVar = email_input.value;
         var senhaVar = senha_input.value;
@@ -70,8 +74,9 @@
             /*
             cardErro.style.display = "block"
             mensagem_erro.innerHTML = "(Preencha todos os campos para prosseguir!)";
-            finalizarAguardar();
+            
             */
+            finalizarAguardar2();
             return false;
         }
         /*
@@ -85,8 +90,8 @@
             /*
             cardErro.style.display = "block"
             mensagem_erro.innerHTML = "Ops, e-mail inválido! Verifique e tente novamente.";
-            finalizarAguardar();
             */
+            finalizarAguardar2();
             return false;
         }
         /*
@@ -100,8 +105,8 @@
             /*
             cardErro.style.display = "block"
             mensagem_erro.innerHTML = "A senha é muito pequena!";
-            finalizarAguardar();
             */
+            finalizarAguardar2();
             return false;
         }
         /*else {

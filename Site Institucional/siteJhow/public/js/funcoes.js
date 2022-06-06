@@ -43,6 +43,22 @@ function finalizarAguardar() {
     divCampos.style.display = "flex";
 }
 
+function aguardar2() {
+    var divAguardar = document.getElementById("div_aguardar");
+    var divCampos = document.getElementById("contlogin");
+    divCampos.style.display = "none";
+    divAguardar.style.display = "block";
+    divAguardar.style.display = "flex";
+}
+
+function finalizarAguardar2() {
+    var divAguardar = document.getElementById("div_aguardar");
+    var divCampos = document.getElementById("contlogin");
+    divAguardar.style.display = "none";
+    divCampos.style.display = "block";
+    divCampos.style.display = "flex";
+}
+
 // modal
 function mostrarModal() {
     var divModal = document.getElementById("div_modal");
